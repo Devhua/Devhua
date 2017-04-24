@@ -46,8 +46,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Devhua's Blog" type="application/atom+xml" />
 
@@ -61,37 +59,24 @@
 
 
 
-<meta name="description" content="前期干货iOS破壳
-用dumpdecrypted给App砸壳
-iOS逆向工程之给App脱壳
-给微信加 hook 尝试记录
-一步一步实现iOS微信自动抢红包(非越狱)
-
-工具：hopper：对脱壳app进行反汇编、反编译 可以分析app二进制文件dumpdecrypted：用于脱壳class-dump：对脱壳app 导出头文件
-越狱设备一台（当时是6s Plus ,ios9.2）越狱后安装有 cyd">
+<meta name="description" content="GCD死锁大作战什么是死锁死锁（deadlock) 通常是当多个线程在相互等待着对方的结束时，就会发生死锁，这时程序可能会被卡住。此时就导致了deadlock！
+串行与并行
+在使用GCD的时候，我们会把需要处理的任务放到Block中，然后将任务追加到相应的队列里面，这个队列，叫做Dispatch Queue。然而，存在于两种Dispatch Queue，一种是要等待上一个执行完，再执行下一个的Se">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS应用脱壳与重签名">
-<meta property="og:url" content="http://devhua.com/2016/11/05/iOS应用脱壳和重签名/index.html">
+<meta property="og:title" content="GCD死锁大作战">
+<meta property="og:url" content="http://devhua.com/2016/01/25/iOS-GCD-deadlock/index.html">
 <meta property="og:site_name" content="Devhua's Blog">
-<meta property="og:description" content="前期干货iOS破壳
-用dumpdecrypted给App砸壳
-iOS逆向工程之给App脱壳
-给微信加 hook 尝试记录
-一步一步实现iOS微信自动抢红包(非越狱)
-
-工具：hopper：对脱壳app进行反汇编、反编译 可以分析app二进制文件dumpdecrypted：用于脱壳class-dump：对脱壳app 导出头文件
-越狱设备一台（当时是6s Plus ,ios9.2）越狱后安装有 cyd">
-<meta property="og:updated_time" content="2017-04-24T05:54:51.000Z">
+<meta property="og:description" content="GCD死锁大作战什么是死锁死锁（deadlock) 通常是当多个线程在相互等待着对方的结束时，就会发生死锁，这时程序可能会被卡住。此时就导致了deadlock！
+串行与并行
+在使用GCD的时候，我们会把需要处理的任务放到Block中，然后将任务追加到相应的队列里面，这个队列，叫做Dispatch Queue。然而，存在于两种Dispatch Queue，一种是要等待上一个执行完，再执行下一个的Se">
+<meta property="og:image" content="http://devhua.com/2016/01/25/iOS-GCD-deadlock/dead-lock.png">
+<meta property="og:updated_time" content="2017-04-24T04:07:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS应用脱壳与重签名">
-<meta name="twitter:description" content="前期干货iOS破壳
-用dumpdecrypted给App砸壳
-iOS逆向工程之给App脱壳
-给微信加 hook 尝试记录
-一步一步实现iOS微信自动抢红包(非越狱)
-
-工具：hopper：对脱壳app进行反汇编、反编译 可以分析app二进制文件dumpdecrypted：用于脱壳class-dump：对脱壳app 导出头文件
-越狱设备一台（当时是6s Plus ,ios9.2）越狱后安装有 cyd">
+<meta name="twitter:title" content="GCD死锁大作战">
+<meta name="twitter:description" content="GCD死锁大作战什么是死锁死锁（deadlock) 通常是当多个线程在相互等待着对方的结束时，就会发生死锁，这时程序可能会被卡住。此时就导致了deadlock！
+串行与并行
+在使用GCD的时候，我们会把需要处理的任务放到Block中，然后将任务追加到相应的队列里面，这个队列，叫做Dispatch Queue。然而，存在于两种Dispatch Queue，一种是要等待上一个执行完，再执行下一个的Se">
+<meta name="twitter:image" content="http://devhua.com/2016/01/25/iOS-GCD-deadlock/dead-lock.png">
 
 
 
@@ -109,7 +94,7 @@ iOS逆向工程之给App脱壳
   };
 </script>
 
-  <title> iOS应用脱壳与重签名 | Devhua's Blog </title>
+  <title> GCD死锁大作战 | Devhua's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +234,7 @@ iOS逆向工程之给App脱壳
             
             
               
-                iOS应用脱壳与重签名
+                GCD死锁大作战
               
             
           </h1>
@@ -261,8 +246,8 @@ iOS逆向工程之给App脱壳
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T10:28:40+08:00" content="2016-11-05">
-              2016-11-05
+            <time itemprop="dateCreated" datetime="2016-01-25T11:12:02+08:00" content="2016-01-25">
+              2016-01-25
             </time>
           </span>
 
@@ -291,8 +276,8 @@ iOS逆向工程之给App脱壳
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/05/iOS应用脱壳和重签名/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/iOS应用脱壳和重签名/" itemprop="commentsCount"></span>
+                <a href="/2016/01/25/iOS-GCD-deadlock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/25/iOS-GCD-deadlock/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -314,40 +299,32 @@ iOS逆向工程之给App脱壳
       
 
       
-        <h2 id="前期干货"><a href="#前期干货" class="headerlink" title="前期干货"></a>前期干货</h2><p><a href="http://www.mottoin.com/92530.html" target="_blank" rel="external">iOS破壳</a></p>
-<p><a href="http://blog.csdn.net/oyzhx/article/details/38339129" target="_blank" rel="external">用dumpdecrypted给App砸壳</a></p>
-<p><a href="http://www.cnblogs.com/ludashi/p/5725743.html" target="_blank" rel="external">iOS逆向工程之给App脱壳</a></p>
-<p><a href="https://testerhome.com/topics/4558" target="_blank" rel="external">给微信加 hook 尝试记录</a></p>
-<p><a href="http://www.jianshu.com/p/189afbe3b429" target="_blank" rel="external">一步一步实现iOS微信自动抢红包(非越狱)
-</a></p>
-<h3 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h3><p>hopper：对脱壳app进行反汇编、反编译 可以分析app二进制文件<br>dumpdecrypted：用于脱壳<br>class-dump：对脱壳app 导出头文件</p>
-<p>越狱设备一台（当时是6s Plus ,ios9.2）<br>越狱后安装有 cydia ，通过cydia安装openSSH，可以通过网段连接到mac</p>
+        <h2 id="GCD死锁大作战"><a href="#GCD死锁大作战" class="headerlink" title="GCD死锁大作战"></a>GCD死锁大作战</h2><h3 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h3><p><a href="https://en.wikipedia.org/wiki/Deadlock" target="_blank" rel="external">死锁（deadlock)</a> 通常是当多个线程在相互等待着对方的结束时，就会发生死锁，这时程序可能会被卡住。此时就导致了deadlock！<br><img src="/2016/01/25/iOS-GCD-deadlock/dead-lock.png" alt="dead-lock.png"></p>
+<h3 id="串行与并行"><a href="#串行与并行" class="headerlink" title="串行与并行"></a>串行与并行</h3><blockquote>
+<p>在使用GCD的时候，我们会把需要处理的任务放到Block中，然后将任务追加到相应的队列里面，这个队列，叫做Dispatch Queue。然而，存在于两种Dispatch Queue，一种是要等待上一个执行完，再执行下一个的Serial Dispatch Queue，这叫做串行队列；另一种，则是不需要上一个执行完，就能执行下一个的Concurrent Dispatch Queue，叫做并行队列。这两种，均<strong>遵循FIFO原则</strong>。</p>
+</blockquote>
+<p><code>dispatch_get_global_queue</code>为全局并行队列</p>
+<p><code>dispatch_get_main_queue</code>为主线程串行队列</p>
 <a id="more"></a>
-<h3 id="脱壳"><a href="#脱壳" class="headerlink" title="脱壳"></a>脱壳</h3><p>步骤：</p>
-<ul>
-<li>下载 dumpdecrypted源码，然后在dumpdecrypted目录下make，生成dumpdecrypted.dylib文件</li>
-<li>电脑连接越狱设备（同一网段）：ssh root@192.168.13.230<br>root@192.168.13.230’s password:<br>openSSH的连接默认密码为:alpine。</li>
-<li>电脑连上手机后查询当前运行进程 ps -e | grep /var/mobile<br>此处直接打印出手机安装app的进程</li>
-<li>将电脑中make生成的dumpdecrypted.dylib文件 使用 scp 指令复制到 手机的/var/tmp/ 目录</li>
-<li>脱壳指令：6sPlus:/var/tmp root# DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Containers/Bundle/Application/6E1CC0B2-4DB7-4F37-B715-FAA317EEC469/WeChat.app/WeChat<br>此指令只能在当前/var/tmp/ 目录下执行</li>
-<li>完成后在手机/var/tmp/目录下ls查看，得到WeChat.decrypted文件（目标脱壳文件）</li>
-<li>将脱壳文件使用scp拷贝到电脑：scp root@192.168.13.230:/var/tmp/WeChat.decrypted /Users/xxx/Desktop</li>
-<li>使用指令 otool -l WeChat.decrypted | grep crypt  (查看是否脱壳)<br>使用指令class-dump -S -s -H WeChat.decrypted -o ./Headers（dump出头文件）</li>
-</ul>
-<p>过程中的坑点：</p>
-<p>架构问题：这次越狱设备是arm64架构的，dumpdecrypted编译出的是支持arm64，还有class-dump指令也是直接arm64.如果你越狱设备是armv7的则需要修改配置</p>
-<p>iOS9.2越狱设备：在网上查资料，好多说是要将dumpdecrypted.dylib文件拷贝到 目标app的document目录下，可是越狱设备安装了很多app，完全不好确定目标app的document目录，本来可以使用Cycript注入目标进程中（cycript -p WeChat），然后执行[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0] 获取目标进程的Document目录，然后复制文件过去就好。可是实施发现，iOS9.2越狱设备下使用Cycript指令后终端一直卡死，无显示。（设备确认安装了Cycript，应该是Cycript插件不支持iOS9.2），这样就无法获取目标app的document目录！好在发现直接把dumpdecrypted.dylib放在手机的/var/tmp/目录下，执行脱壳指令也是可行的！</p>
-<h2 id="重签名app"><a href="#重签名app" class="headerlink" title="重签名app"></a>重签名app</h2><p><a href="http://forums.macnn.com/79/developer-center/355720/how-re-sign-apples-applications-once/" target="_blank" rel="external">《How to re-sign Apple’s applications once they’ve been modified》</a></p>
-<p><a href="http://www.ifun.cc/blog/2014/02/22/ios-appzhong-xin-qian-ming-fang-fa-jie-shao/" target="_blank" rel="external">中文简版步骤</a></p>
-<p>步骤：</p>
-<ul>
-<li>查看有效的证书 : security find-identity -v -p codesigning</li>
-<li>检查目标app签名情况：codesign -dvvv EmojiKeyboard.app</li>
-<li>删除ipa中之前的签名文件:rm -rf Payload/*.app/_CodeSignature/</li>
-<li>拷贝新的provision profile替换旧的embedded.mobileprovision（这个provision profile需要是distribution provision，可以找之前项目的）  cp 123.mobileprovision Payload/*.app/embedded.mobileprovision</li>
-<li>重签名：codesign -f -s (name of certificate) /path/to/application</li>
-</ul>
-<p>例如：<br>➜  Payload codesign -f -s “iPhone Developer: xxx@xxx.com (9283B989BB)” xxx.app<br>xxx.app: replacing existing signature<br>➜  Payload codesign -dvvv xxx.app</p>
+<p>自己也可以创建队列：</p>
+<p>//创建串行队列<br><code>dispatch_queue_create(&quot;com.demo.serialQueue&quot;, DISPATCH_QUEUE_SERIAL)</code></p>
+<p>//创建并行队列<br><code>dispatch_queue_create(&quot;com.demo.concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT)</code></p>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>首先同步异步是对于线程来说的，主要区别是是否等待IO操作（并不一定是）执行完成，即是否阻塞当前线程，其中的 IO 操作肯定是别的线程去执行的</p>
+<blockquote>
+<p>并发执行的多个任务中可能存在多个线程，其中的多个线程有可能是同步执行的 也有可能是异步执行的</p>
+</blockquote>
+<p>//同步线程<br><code>dispatch_sync(某个队列信息,^(block))</code></p>
+<p>//异步线程<br><code>dispatch_async(某个队列信息,^(block))</code> </p>
+<h3 id="让我们来解锁吧"><a href="#让我们来解锁吧" class="headerlink" title="让我们来解锁吧"></a>让我们来解锁吧</h3><p><strong>当前串行队列里面同步执行当前串行队列就会死锁，解决的方法就是将同步的串行队列放到另外一个线程就能够解决。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;1&quot;);</span><br><span class="line">dispatch_sync(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">   NSLog(@&quot;2&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><del>这里的死锁不是因为在主线程执行，而是在main_queue内部的两个任务：dispatch_sync和NSLog相互等待导致。NSLog(@”2”)要等dispatch_sync执行完，而在执行NSLog(@”2”)执行完以前，dispatch_sync又不会结束。</del></p>
+<p><strong>实际上，这里在主线程运行（串行线程），在主线程（当前串行队列）同步执行打印2时会产生互相等待而死锁。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSLog(@&quot;1&quot;);</span><br><span class="line">//3会等2，因为2在全局并行队列里，不需要等待3，这样2执行完回到主队列，3就开始执行</span><br><span class="line">dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^&#123;</span><br><span class="line">   NSLog(@&quot;2&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;3&quot;);</span><br></pre></td></tr></table></figure>
+<p>这里不死锁，同步任务在全局并行队列中，因此2执行完就跳转到主线程执行3。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t serialQueue = dispatch_queue_create(&quot;com.starming.gcddemo.serialqueue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">NSLog(@&quot;1&quot;);</span><br><span class="line">dispatch_async(serialQueue, ^&#123;</span><br><span class="line">   NSLog(@&quot;2&quot;);</span><br><span class="line">   //串行队列里面同步一个串行队列就会死锁</span><br><span class="line">   dispatch_sync(serialQueue, ^&#123;</span><br><span class="line">       NSLog(@&quot;3&quot;);</span><br><span class="line">   &#125;);</span><br><span class="line">   NSLog(@&quot;4&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;5&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">   NSLog(@&quot;1&quot;);</span><br><span class="line">   //回到主线程发现死循环后面就没法执行了</span><br><span class="line">   dispatch_sync(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">       NSLog(@&quot;2&quot;);</span><br><span class="line">   &#125;);</span><br><span class="line">   NSLog(@&quot;3&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">NSLog(@&quot;4&quot;);</span><br><span class="line">//死循环</span><br><span class="line">while (1) &#123;</span><br><span class="line">   //</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>以上部分欢迎讨论</strong></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://objccn.io/issue-2-1/#dead_locks" target="_blank" rel="external">并发编程</a><br><a href="https://www.zybuluo.com/MicroCai/note/64272" target="_blank" rel="external">Effective Objective-C Notes：GCD 实现同步锁</a><br><a href="http://www.jianshu.com/p/fbe6a654604c" target="_blank" rel="external">细说GCD（Grand Central Dispatch）如何用</a></p>
 
       
     </div>
@@ -371,13 +348,17 @@ iOS逆向工程之给App脱壳
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/05/annual-summary-of-programmer/" rel="next" title="非典型程序猿羊年总结">
-                <i class="fa fa-chevron-left"></i> 非典型程序猿羊年总结
+              <a href="/2016/01/06/Change-Your-App-Icon-at-Build-time/" rel="next" title="Change Your App Icon at build time">
+                <i class="fa fa-chevron-left"></i> Change Your App Icon at build time
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/05/annual-summary-of-programmer/" rel="prev" title="非典型程序猿羊年总结">
+                非典型程序猿羊年总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -403,8 +384,8 @@ iOS逆向工程之给App脱壳
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/05/iOS应用脱壳和重签名/"
-           data-title="iOS应用脱壳与重签名" data-url="http://devhua.com/2016/11/05/iOS应用脱壳和重签名/">
+      <div class="ds-thread" data-thread-key="2016/01/25/iOS-GCD-deadlock/"
+           data-title="GCD死锁大作战" data-url="http://devhua.com/2016/01/25/iOS-GCD-deadlock/">
       </div>
     
   </div>
@@ -538,7 +519,7 @@ iOS逆向工程之给App脱壳
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期干货"><span class="nav-number">1.</span> <span class="nav-text">前期干货</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工具："><span class="nav-number">1.1.</span> <span class="nav-text">工具：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脱壳"><span class="nav-number">1.2.</span> <span class="nav-text">脱壳</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重签名app"><span class="nav-number">2.</span> <span class="nav-text">重签名app</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD死锁大作战"><span class="nav-number">1.</span> <span class="nav-text">GCD死锁大作战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是死锁"><span class="nav-number">1.1.</span> <span class="nav-text">什么是死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#串行与并行"><span class="nav-number">1.2.</span> <span class="nav-text">串行与并行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步和异步"><span class="nav-number">1.3.</span> <span class="nav-text">同步和异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让我们来解锁吧"><span class="nav-number">1.4.</span> <span class="nav-text">让我们来解锁吧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -61,24 +61,21 @@
 
 <meta name="description" content="需求背景为了区分线上版本、测试版本以及调试版本，我们在开发过程中一般会修改bunlde Id以便在一个设备上安装不同版本的App。然而问题来了，如何快速区分出桌面上的App是什么版本呢？最直观的就是改变App图标，达到显而易见的目的。
 
-在看了这篇译文后，利用脚本可以非常便利的实现这个需求（这是原文）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。
-实际工作实际上，">
+在看了这篇译文后，利用脚本可以非常便利的实现这个需求（这是原文）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Change Your App Icon at build time">
 <meta property="og:url" content="http://devhua.com/2016/01/06/Change-Your-App-Icon-at-Build-time/index.html">
 <meta property="og:site_name" content="Devhua's Blog">
 <meta property="og:description" content="需求背景为了区分线上版本、测试版本以及调试版本，我们在开发过程中一般会修改bunlde Id以便在一个设备上安装不同版本的App。然而问题来了，如何快速区分出桌面上的App是什么版本呢？最直观的就是改变App图标，达到显而易见的目的。
 
-在看了这篇译文后，利用脚本可以非常便利的实现这个需求（这是原文）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。
-实际工作实际上，">
+在看了这篇译文后，利用脚本可以非常便利的实现这个需求（这是原文）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。">
 <meta property="og:image" content="http://cc.cocimg.com/api/uploads/20150907/1441608383827075.png">
-<meta property="og:updated_time" content="2016-12-28T11:47:14.000Z">
+<meta property="og:updated_time" content="2017-04-24T04:06:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Change Your App Icon at build time">
 <meta name="twitter:description" content="需求背景为了区分线上版本、测试版本以及调试版本，我们在开发过程中一般会修改bunlde Id以便在一个设备上安装不同版本的App。然而问题来了，如何快速区分出桌面上的App是什么版本呢？最直观的就是改变App图标，达到显而易见的目的。
 
-在看了这篇译文后，利用脚本可以非常便利的实现这个需求（这是原文）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。
-实际工作实际上，">
+在看了这篇译文后，利用脚本可以非常便利的实现这个需求（这是原文）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。">
 <meta name="twitter:image" content="http://cc.cocimg.com/api/uploads/20150907/1441608383827075.png">
 
 
@@ -151,7 +148,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/首页" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
@@ -161,7 +158,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/归档" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
@@ -171,7 +168,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/分类" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
             
@@ -181,7 +178,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/标签" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
@@ -190,42 +187,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/关于" rel="section">
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
             
               <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-search">
-          <a href="/搜索" rel="section">
-            
-              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/公益404" rel="section">
-            
-              <i class="menu-item-icon fa fa-heartbeat fa-fw"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-comments">
-          <a href="/评论" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            menu.comments
+            留言
           </a>
         </li>
       
@@ -335,6 +302,7 @@
         <h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>为了<strong>区分线上版本、测试版本以及调试版本</strong>，我们在开发过程中一般会修改bunlde Id以便在一个设备上安装不同版本的App。然而问题来了，如何快速区分出桌面上的App是什么版本呢？最直观的就是<strong>改变App图标</strong>，达到显而易见的目的。</p>
 <hr>
 <p>在看了<a href="http://www.cocoachina.com/ios/20150909/13354.html" target="_blank" rel="external">这篇译文</a>后，利用脚本可以非常便利的实现这个需求（<a href="https://www.raywenderlich.com/105641/change-app-icon-build-time" target="_blank" rel="external">这是原文</a>）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。</p>
+<a id="more"></a>
 <h2 id="实际工作"><a href="#实际工作" class="headerlink" title="实际工作"></a>实际工作</h2><p>实际上，原文中对脚本解释的非常清楚，我这里简单记录下，顺便提一下注意点。</p>
 <p><strong>实现原理</strong>：在Xcode下build时，运行一个shell脚本，使用ImageMagick这个图像处理软件套件进行图标转换和组合，替换掉原本设置的AppIcon。</p>
 <p><strong>实现步骤</strong>：</p>
@@ -382,8 +350,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/02/05/annual-summary-of-programmer/" rel="prev" title="非典型程序猿羊年总结">
-                非典型程序猿羊年总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/25/iOS-GCD-deadlock/" rel="prev" title="GCD死锁大作战">
+                GCD死锁大作战 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -455,15 +423,15 @@
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/归档">
-              <span class="site-state-item-count">3</span>
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              <a href="/分类">
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -472,7 +440,7 @@
 
           
             <div class="site-state-item site-state-tags">
-              <a href="/标签">
+              <a href="/tags">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -567,7 +535,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

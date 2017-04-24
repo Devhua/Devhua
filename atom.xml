@@ -4,9 +4,9 @@
   <subtitle>爱生活，有理想，会思考，能沟通！</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://devhua.com/"/>
+  <link href="http://www.devhua.com/"/>
   <updated>2017-04-24T05:54:51.000Z</updated>
-  <id>http://devhua.com/</id>
+  <id>http://www.devhua.com/</id>
   
   <author>
     <name>洛上倾城华少</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>iOS应用脱壳与重签名</title>
-    <link href="http://devhua.com/2016/11/05/iOS%E5%BA%94%E7%94%A8%E8%84%B1%E5%A3%B3%E5%92%8C%E9%87%8D%E7%AD%BE%E5%90%8D/"/>
-    <id>http://devhua.com/2016/11/05/iOS应用脱壳和重签名/</id>
+    <link href="http://www.devhua.com/2016/11/05/iOS%E5%BA%94%E7%94%A8%E8%84%B1%E5%A3%B3%E5%92%8C%E9%87%8D%E7%AD%BE%E5%90%8D/"/>
+    <id>http://www.devhua.com/2016/11/05/iOS应用脱壳和重签名/</id>
     <published>2016-11-05T02:28:40.000Z</published>
     <updated>2017-04-24T05:54:51.000Z</updated>
     
@@ -71,17 +71,17 @@
     
     </summary>
     
-      <category term="技术" scheme="http://devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://www.devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="iOS" scheme="http://devhua.com/tags/iOS/"/>
+      <category term="iOS" scheme="http://www.devhua.com/tags/iOS/"/>
     
   </entry>
   
   <entry>
     <title>非典型程序猿羊年总结</title>
-    <link href="http://devhua.com/2016/02/05/annual-summary-of-programmer/"/>
-    <id>http://devhua.com/2016/02/05/annual-summary-of-programmer/</id>
+    <link href="http://www.devhua.com/2016/02/05/annual-summary-of-programmer/"/>
+    <id>http://www.devhua.com/2016/02/05/annual-summary-of-programmer/</id>
     <published>2016-02-05T11:28:40.000Z</published>
     <updated>2017-04-24T04:07:09.000Z</updated>
     
@@ -106,17 +106,17 @@
     
     </summary>
     
-      <category term="生活" scheme="http://devhua.com/categories/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="http://www.devhua.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="总结" scheme="http://devhua.com/tags/%E6%80%BB%E7%BB%93/"/>
+      <category term="总结" scheme="http://www.devhua.com/tags/%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
   <entry>
     <title>GCD死锁大作战</title>
-    <link href="http://devhua.com/2016/01/25/iOS-GCD-deadlock/"/>
-    <id>http://devhua.com/2016/01/25/iOS-GCD-deadlock/</id>
+    <link href="http://www.devhua.com/2016/01/25/iOS-GCD-deadlock/"/>
+    <id>http://www.devhua.com/2016/01/25/iOS-GCD-deadlock/</id>
     <published>2016-01-25T03:12:02.000Z</published>
     <updated>2017-04-24T04:07:27.000Z</updated>
     
@@ -159,17 +159,17 @@
     
     </summary>
     
-      <category term="技术" scheme="http://devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://www.devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="iOS" scheme="http://devhua.com/tags/iOS/"/>
+      <category term="iOS" scheme="http://www.devhua.com/tags/iOS/"/>
     
   </entry>
   
   <entry>
     <title>Change Your App Icon at build time</title>
-    <link href="http://devhua.com/2016/01/06/Change-Your-App-Icon-at-Build-time/"/>
-    <id>http://devhua.com/2016/01/06/Change-Your-App-Icon-at-Build-time/</id>
+    <link href="http://www.devhua.com/2016/01/06/Change-Your-App-Icon-at-Build-time/"/>
+    <id>http://www.devhua.com/2016/01/06/Change-Your-App-Icon-at-Build-time/</id>
     <published>2016-01-06T10:48:40.000Z</published>
     <updated>2017-04-24T04:06:56.000Z</updated>
     
@@ -207,10 +207,10 @@
     
     </summary>
     
-      <category term="技术" scheme="http://devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://www.devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="iOS" scheme="http://devhua.com/tags/iOS/"/>
+      <category term="iOS" scheme="http://www.devhua.com/tags/iOS/"/>
     
   </entry>
   

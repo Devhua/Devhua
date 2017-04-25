@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.devhua.com/"/>
-  <updated>2017-04-24T05:54:51.000Z</updated>
+  <updated>2017-04-25T03:53:41.000Z</updated>
   <id>https://www.devhua.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WKWebview tips</title>
+    <link href="https://www.devhua.com/2017/04/24/iOS-WKWebview-Tips/"/>
+    <id>https://www.devhua.com/2017/04/24/iOS-WKWebview-Tips/</id>
+    <published>2017-04-24T09:38:04.000Z</published>
+    <updated>2017-04-25T03:53:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="WKWebview-踩坑之旅（正在更新…）"><a href="#WKWebview-踩坑之旅（正在更新…）" class="headerlink" title="WKWebview 踩坑之旅（正在更新…）"></a>WKWebview 踩坑之旅（正在更新…）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考<br><a href="http://nshipster.cn/wkwebkit/" target="_blank" rel="external">nshipster介绍WKWebview</a><br>学习WKWebview需研究<a href="https://github.com/WebKit/webkit" target="_blank" rel="external">源码</a>，可以调试下miniBrowser项目</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和safari相同的JavaScript引擎等优势，但由于其本身的不完善和一些坑点以及迁移的工作量等问题，一直未深入研究迁移方案。<br>但多个UIWebview浏览的内存暴涨导致容易crash一直是块心病。于是还是尝试迁移到wkwebview，便有了一段<strong>踩坑之旅</strong>。</p>
+<h3 id="WKWebview使用注意点"><a href="#WKWebview使用注意点" class="headerlink" title="WKWebview使用注意点"></a>WKWebview使用注意点</h3><p>网上也已经有不少使用注意点的总结文章，在此先贴出了，然后讲些自己遇到的问题和处理方案。<br><a href="http://mp.weixin.qq.com/s/rhYKLIbXOsUJC_n6dt9UfA" target="_blank" rel="external">WKWebView 那些坑</a><br><a href="https://github.com/ShingoFukuyama/WKWebViewTips" target="_blank" rel="external">WKWebviewTips</a></p>
+<h4 id="1-加载本地html注意区分系统版本"><a href="#1-加载本地html注意区分系统版本" class="headerlink" title="1. 加载本地html注意区分系统版本"></a>1. 加载本地html注意区分系统版本</h4><p>iOS9及以上版本可以使用<br><code>[self.webview loadRequest:request]</code></p>
+<p><strong>本地资源生成的request在iOS8下无法加载</strong><br>iOS8下加载本地文件: <code>[self.webview loadHTMLString:str]</code><br> <a href="http://stackoverflow.com/questions/27803341/swift-wkwebview-loading-local-file-not-working-on-a-device" target="_blank" rel="external">http://stackoverflow.com/questions/27803341/swift-wkwebview-loading-local-file-not-working-on-a-device</a></p>
+<h4 id="2-跨域跳转处理"><a href="#2-跨域跳转处理" class="headerlink" title="2.跨域跳转处理"></a>2.跨域跳转处理</h4><p><code>- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler</code><br>此代理中对于一些<code>navigationAction.navigationType</code>跳转类型判断需要注意自己处理。不然容易出现点击页面链接无响应。</p>
+<h4 id="3-共享cookie问题"><a href="#3-共享cookie问题" class="headerlink" title="3.共享cookie问题"></a>3.共享cookie问题</h4><p>如果有同时开多个网页的需求，这就需要注意共享cookie了。由于本身WKWebview中使用到了WKProcessPool，导致多个wkwebview间无法共享cookie。查看<a href="https://github.com/mozilla-mobile/firefox-ios/blob/master/Client/Frontend/Browser/TabManager.swift" target="_blank" rel="external">firefox源码</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// A WKWebViewConfiguration used for normal tabs</div><div class="line">    lazy fileprivate var configuration: WKWebViewConfiguration = &#123;</div><div class="line">        let configuration = WKWebViewConfiguration()</div><div class="line">        configuration.processPool = WKProcessPool()</div><div class="line">        configuration.preferences.javaScriptCanOpenWindowsAutomatically = !(self.prefs.boolForKey(&quot;blockPopups&quot;) ?? true)</div><div class="line">        return configuration</div><div class="line">    &#125;()</div><div class="line"></div><div class="line">    // A WKWebViewConfiguration used for private mode tabs</div><div class="line">    lazy fileprivate var privateConfiguration: WKWebViewConfiguration = &#123;</div><div class="line">        let configuration = WKWebViewConfiguration()</div><div class="line">        configuration.processPool = WKProcessPool()</div><div class="line">        configuration.preferences.javaScriptCanOpenWindowsAutomatically = !(self.prefs.boolForKey(&quot;blockPopups&quot;) ?? true)</div><div class="line">        configuration.websiteDataStore = WKWebsiteDataStore.nonPersistent()</div><div class="line">        return configuration</div><div class="line">    &#125;()</div></pre></td></tr></table></figure>
+<p>以上代码是firefox在正常模式及隐私模式下创建的configuration.<br>当然，在app被kill掉后再启动又会被重置，导致pool中的cookie数据丢失。如果不是做浏览器，而是自身app与服务器打交道，可以考虑把cookie信息在请求前手动加上header中。<br>参考：<br><a href="http://stackoverflow.com/questions/39772007/wkwebview-persistent-storage-of-cookies" target="_blank" rel="external">http://stackoverflow.com/questions/39772007/wkwebview-persistent-storage-of-cookies</a></p>
+<p><a href="http://stackoverflow.com/questions/26573137/can-i-set-the-cookies-to-be-used-by-a-wkwebview" target="_blank" rel="external">http://stackoverflow.com/questions/26573137/can-i-set-the-cookies-to-be-used-by-a-wkwebview</a></p>
+<p><a href="http://stackoverflow.com/questions/33156567/getting-all-cookies-from-wkwebview" target="_blank" rel="external">http://stackoverflow.com/questions/33156567/getting-all-cookies-from-wkwebview</a></p>
+<h4 id="4-部分特殊页面点击链接事件失效"><a href="#4-部分特殊页面点击链接事件失效" class="headerlink" title="4.部分特殊页面点击链接事件失效"></a>4.部分特殊页面点击链接事件失效</h4><p>在浏览部分邮箱页面（）在新标签页打开 ( wkwebview )时<br>//例如：target = “_blank”</p>
+<p><code>&lt;a href=&quot;https://m.baidu.com/?tn=&amp;amp;from=1018225b&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; class=&quot;&quot;&gt;https://m.baidu.com/?tn=&amp;amp;from=1018225b&lt;/a&gt;</code></p>
+<p>点击链接后，在这个<code>- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures</code>代理中收到的<code>request.url</code>为空，无法获取到正确请求。<br>这个问题在firefox上也有且未解决，然而Safari上都是正常的（苹果还是老奸巨猾啊。。）<br>参考: <a href="http://swiftgazelle.com/2015/08/wkwebview-target_blank-quirks/" target="_blank" rel="external">WKWebview-target-blank-quirks</a><br>当然UIWebview也有这样的问题，莫名其妙在CreateNewWebview代理中获取到的request为空，不过，UIWebview可以通过一些私有方式，很方便的获取到网页内部信息。</p>
+<h4 id="5-页面跳转后再返回不会执行script和Ajax"><a href="#5-页面跳转后再返回不会执行script和Ajax" class="headerlink" title="5.页面跳转后再返回不会执行script和Ajax"></a>5.页面跳转后再返回不会执行script和Ajax</h4><p><strong>从页面a进入页面b再返回页面a后不会重新执行script和Ajax，也不会触发页面reload，此部分情况需要针对实际场景做处理，手动reload。</strong></p>
+<h4 id="6-数据清除"><a href="#6-数据清除" class="headerlink" title="6.数据清除"></a>6.数据清除</h4><p>iOS 8下<code>WKWebsiteDataStore</code>还不支持，因此需要手动删除Cookies，Caches，Webkit文件夹（注意数据保存的路径问题）<br>iOS 9虽然有<code>WKWebsiteDataStore</code>接口，但实际使用起来会有概率性crash情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">NSSet *websiteDataTypes</div><div class="line">= [NSSet setWithArray:@[</div><div class="line">                        WKWebsiteDataTypeDiskCache,</div><div class="line">                        WKWebsiteDataTypeOfflineWebApplicationCache,</div><div class="line">                        WKWebsiteDataTypeMemoryCache,</div><div class="line">                        WKWebsiteDataTypeLocalStorage,</div><div class="line">                        WKWebsiteDataTypeCookies,</div><div class="line">                        WKWebsiteDataTypeSessionStorage,</div><div class="line">                        WKWebsiteDataTypeIndexedDBDatabases,</div><div class="line">                        WKWebsiteDataTypeWebSQLDatabases</div><div class="line">                        ]];</div><div class="line">//// All kinds of data</div><div class="line">//NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];</div><div class="line">//// Date from</div><div class="line">NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];</div><div class="line">//// Execute</div><div class="line">[[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^&#123;</div><div class="line">   // Done</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p><strong>因此建议直接根据路径删除文件夹（iOS 8和iOS 9后数据保存的路径不一致，需要判断）</strong></p>
+<h4 id="7-横竖屏切换调整wkwebview视图"><a href="#7-横竖屏切换调整wkwebview视图" class="headerlink" title="7.横竖屏切换调整wkwebview视图"></a>7.横竖屏切换调整wkwebview视图</h4><h3 id="wkwebview刷新机制"><a href="#wkwebview刷新机制" class="headerlink" title="wkwebview刷新机制"></a>wkwebview刷新机制</h3><p>在一些低端机型上，滑动webview时明显就一段一段的白屏出现，跟UIWebview表现差远了。这引起了兴趣，查看并研究了下源码，发现wkwebview并不是跟uiwebview一样渲染所有网络数据，而是一屏一屏的渲染，也是这样才有了内存占用少的优势。也有一篇源码的文章推荐下<a href="http://www.jianshu.com/p/1d739e2e7ed2" target="_blank" rel="external">WKWebView刷新机制小探</a></p>
+<blockquote>
+<p>WKContentView就是WKWebView内容渲染的容器。在Reveal的树状图上面可以看到，渲染页面中，展示在页面上的渲染单元是WKCompositingView，WKCompositingView可以嵌套WKCompositingView。其中的一个WKCompositingView实例，将包含多个WKCompositingView子实例。类似于UITableView的重用机制，多个WKCompositingView的父View就相当于UITableView，WKCompositingView就相当于UITableViewCell，只展示可视区域的内容，达到性能优化的目的。</p>
+<p>一个WKWebView加载的web内容，切割成多个WKCompositingView，单个WKCompositingView重用单元的面积是375x512点。</p>
+</blockquote>
+<p>从源码入手确实可以看到很多实现细节，但真正想要想像UIWebview一样hook掉很多系统属性和方法是不可能的，只能说苹果做的真绝。。</p>
+<p>理解了这个刷新机制后，在做一些类似新闻类，有多个wkwebview当做uiview add到tableview上，即使竖向滚动也可以绑定wkwebview的scrollview的刷新渲染了。（<code>[WKWebView _updateVisibleContentRects]</code>）<br>推荐的文章最后说使用以下3个方法解决白屏问题：</p>
+<ul>
+<li>用KVO方法监听UITableView的contnetOffset属性，contentOffset发生变化也就是说UITableView发生滚动，调用WKWebView实例的_updateVisibleContentRects，刷新需要渲染的内容</li>
+<li>UITableView是继承自UIScrollView的，在代码中实现UIScrollView的delegate，在delegate实现中手动调用WKWebView实例等UIScrollViewDelegate的方法，原理和第一种方法一样</li>
+<li>使用CADisplayLink类，在CADisplayLink的回调方法里面调用WKWebView实例的_updateVisibleContentRects即可</li>
+</ul>
+<p>真正操作时你会发现，在快速滑动UITableView时，代理暴露出来的点跨度很大，完全不连贯，导致刷新内部webview的内容不及时。<strong>因此推荐使用CADisplaylink类，利用屏幕刷新机制去触发wkwebview实例的刷新。</strong></p>
+<h3 id="wkwebview致命缺陷-NSURLProtocol问题"><a href="#wkwebview致命缺陷-NSURLProtocol问题" class="headerlink" title="wkwebview致命缺陷 - NSURLProtocol问题"></a>wkwebview致命缺陷 - NSURLProtocol问题</h3><p>（待更新）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;WKWebview-踩坑之旅（正在更新…）&quot;&gt;&lt;a href=&quot;#WKWebview-踩坑之旅（正在更新…）&quot; class=&quot;headerlink&quot; title=&quot;WKWebview 踩坑之旅（正在更新…）&quot;&gt;&lt;/a&gt;WKWebview 踩坑之旅（正在更新…）&lt;/
+    
+    </summary>
+    
+      <category term="技术" scheme="https://www.devhua.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="iOS" scheme="https://www.devhua.com/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS应用脱壳与重签名</title>

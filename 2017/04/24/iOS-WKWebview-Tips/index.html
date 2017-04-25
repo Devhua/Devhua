@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -59,15 +59,17 @@
 
 
 
-<meta name="description" content="谁的头顶上没有灰尘，谁的肩上没有过齿痕">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Devhua's Blog">
-<meta property="og:url" content="https://www.devhua.com/index.html">
+<meta name="description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WKWebview tips">
+<meta property="og:url" content="https://www.devhua.com/2017/04/24/iOS-WKWebview-Tips/index.html">
 <meta property="og:site_name" content="Devhua's Blog">
-<meta property="og:description" content="谁的头顶上没有灰尘，谁的肩上没有过齿痕">
+<meta property="og:description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
+<meta property="og:updated_time" content="2017-04-25T03:53:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Devhua's Blog">
-<meta name="twitter:description" content="谁的头顶上没有灰尘，谁的肩上没有过齿痕">
+<meta name="twitter:title" content="WKWebview tips">
+<meta name="twitter:description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
 
 
 
@@ -85,7 +87,7 @@
   };
 </script>
 
-  <title> Devhua's Blog </title>
+  <title> WKWebview tips | Devhua's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -106,9 +108,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -205,9 +205,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -227,10 +227,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/24/iOS-WKWebview-Tips/" itemprop="url">
-                  WKWebview tips
-                </a>
+                WKWebview tips
               
             
           </h1>
@@ -295,9 +292,7 @@
       
 
       
-        
-          
-            <h1 id="WKWebview-踩坑之旅（正在更新…）"><a href="#WKWebview-踩坑之旅（正在更新…）" class="headerlink" title="WKWebview 踩坑之旅（正在更新…）"></a>WKWebview 踩坑之旅（正在更新…）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考<br><a href="http://nshipster.cn/wkwebkit/" target="_blank" rel="external">nshipster介绍WKWebview</a><br>学习WKWebview需研究<a href="https://github.com/WebKit/webkit" target="_blank" rel="external">源码</a>，可以调试下miniBrowser项目</p>
+        <h1 id="WKWebview-踩坑之旅（正在更新…）"><a href="#WKWebview-踩坑之旅（正在更新…）" class="headerlink" title="WKWebview 踩坑之旅（正在更新…）"></a>WKWebview 踩坑之旅（正在更新…）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考<br><a href="http://nshipster.cn/wkwebkit/" target="_blank" rel="external">nshipster介绍WKWebview</a><br>学习WKWebview需研究<a href="https://github.com/WebKit/webkit" target="_blank" rel="external">源码</a>，可以调试下miniBrowser项目</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和safari相同的JavaScript引擎等优势，但由于其本身的不完善和一些坑点以及迁移的工作量等问题，一直未深入研究迁移方案。<br>但多个UIWebview浏览的内存暴涨导致容易crash一直是块心病。于是还是尝试迁移到wkwebview，便有了一段<strong>踩坑之旅</strong>。</p>
 <h3 id="WKWebview使用注意点"><a href="#WKWebview使用注意点" class="headerlink" title="WKWebview使用注意点"></a>WKWebview使用注意点</h3><p>网上也已经有不少使用注意点的总结文章，在此先贴出了，然后讲些自己遇到的问题和处理方案。<br><a href="http://mp.weixin.qq.com/s/rhYKLIbXOsUJC_n6dt9UfA" target="_blank" rel="external">WKWebView 那些坑</a><br><a href="https://github.com/ShingoFukuyama/WKWebViewTips" target="_blank" rel="external">WKWebviewTips</a></p>
 <h4 id="1-加载本地html注意区分系统版本"><a href="#1-加载本地html注意区分系统版本" class="headerlink" title="1. 加载本地html注意区分系统版本"></a>1. 加载本地html注意区分系统版本</h4><p>iOS9及以上版本可以使用<br><code>[self.webview loadRequest:request]</code></p>
@@ -330,514 +325,51 @@
 <p>真正操作时你会发现，在快速滑动UITableView时，代理暴露出来的点跨度很大，完全不连贯，导致刷新内部webview的内容不及时。<strong>因此推荐使用CADisplaylink类，利用屏幕刷新机制去触发wkwebview实例的刷新。</strong></p>
 <h3 id="wkwebview致命缺陷-NSURLProtocol问题"><a href="#wkwebview致命缺陷-NSURLProtocol问题" class="headerlink" title="wkwebview致命缺陷 - NSURLProtocol问题"></a>wkwebview致命缺陷 - NSURLProtocol问题</h3><p>（待更新）</p>
 
-          
-        
       
     </div>
 
     <div>
       
+        
+      
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/05/iOS应用脱壳和重签名/" itemprop="url">
-                  iOS应用脱壳与重签名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T10:28:40+08:00" content="2016-11-05">
-              2016-11-05
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/05/iOS应用脱壳和重签名/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/iOS应用脱壳和重签名/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="前期干货"><a href="#前期干货" class="headerlink" title="前期干货"></a>前期干货</h2><p><a href="http://www.mottoin.com/92530.html">iOS破壳</a></p>
-<p><a href="http://blog.csdn.net/oyzhx/article/details/38339129">用dumpdecrypted给App砸壳</a></p>
-<p><a href="http://www.cnblogs.com/ludashi/p/5725743.html">iOS逆向工程之给App脱壳</a></p>
-<p><a href="https://testerhome.com/topics/4558">给微信加 hook 尝试记录</a></p>
-<p><a href="http://www.jianshu.com/p/189afbe3b429">一步一步实现iOS微信自动抢红包(非越狱)
-</a></p>
-<h3 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h3><p>hopper：对脱壳app进行反汇编、反编译 可以分析app二进制文件<br>dumpdecrypted：用于脱壳<br>class-dump：对脱壳app 导出头文件</p>
-<p>越狱设备一台（当时是6s Plus ,ios9.2）<br>越狱后安装有 cydia ，通过cydia安装openSSH，可以通过网段连接到mac</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/05/iOS应用脱壳和重签名/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/11/05/iOS应用脱壳和重签名/" rel="prev" title="iOS应用脱壳与重签名">
+                iOS应用脱壳与重签名 <i class="fa fa-chevron-right"></i>
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/02/05/annual-summary-of-programmer/" itemprop="url">
-                  非典型程序猿羊年总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-05T19:28:40+08:00" content="2016-02-05">
-              2016-02-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/05/annual-summary-of-programmer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/05/annual-summary-of-programmer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>14年底到15年年初的工作一言难尽，自己从嵌入式转到iOS开发，新的平台新的部门都需要重新学习和提高，压力可想而知。年初终于在我们大C司定岗，正式成为一个iOS开发，非常感谢我的三位iOS启蒙导师（李思哥哥、陆爷、彦群），他们帮助我跨过前期的障碍，也看到移动开发技术的未来。总体来讲，自己看到既年轻又活跃的天空，跟着团队也逐步认识到了一个创业团队的磨合期和碰撞期。<strong>风云变幻，莫笑少年愁</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/05/annual-summary-of-programmer/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/25/iOS-GCD-deadlock/" itemprop="url">
-                  GCD死锁大作战
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-25T11:12:02+08:00" content="2016-01-25">
-              2016-01-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/25/iOS-GCD-deadlock/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/25/iOS-GCD-deadlock/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="GCD死锁大作战"><a href="#GCD死锁大作战" class="headerlink" title="GCD死锁大作战"></a>GCD死锁大作战</h2><h3 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h3><p><a href="https://en.wikipedia.org/wiki/Deadlock">死锁（deadlock)</a> 通常是当多个线程在相互等待着对方的结束时，就会发生死锁，这时程序可能会被卡住。此时就导致了deadlock！<br><img src="/2016/01/25/iOS-GCD-deadlock/dead-lock.png" alt="dead-lock.png"></p>
-<h3 id="串行与并行"><a href="#串行与并行" class="headerlink" title="串行与并行"></a>串行与并行</h3><blockquote>
-<p>在使用GCD的时候，我们会把需要处理的任务放到Block中，然后将任务追加到相应的队列里面，这个队列，叫做Dispatch Queue。然而，存在于两种Dispatch Queue，一种是要等待上一个执行完，再执行下一个的Serial Dispatch Queue，这叫做串行队列；另一种，则是不需要上一个执行完，就能执行下一个的Concurrent Dispatch Queue，叫做并行队列。这两种，均<strong>遵循FIFO原则</strong>。</p>
-</blockquote>
-<p><code>dispatch_get_global_queue</code>为全局并行队列</p>
-<p><code>dispatch_get_main_queue</code>为主线程串行队列</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/25/iOS-GCD-deadlock/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/06/Change-Your-App-Icon-at-Build-time/" itemprop="url">
-                  Change Your App Icon at build time
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-06T18:48:40+08:00" content="2016-01-06">
-              2016-01-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/06/Change-Your-App-Icon-at-Build-time/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/06/Change-Your-App-Icon-at-Build-time/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h2><p>为了<strong>区分线上版本、测试版本以及调试版本</strong>，我们在开发过程中一般会修改bunlde Id以便在一个设备上安装不同版本的App。然而问题来了，如何快速区分出桌面上的App是什么版本呢？最直观的就是<strong>改变App图标</strong>，达到显而易见的目的。</p>
-<hr>
-<p>在看了<a href="http://www.cocoachina.com/ios/20150909/13354.html">这篇译文</a>后，利用脚本可以非常便利的实现这个需求（<a href="https://www.raywenderlich.com/105641/change-app-icon-build-time">这是原文</a>）。虽然译文翻译有些问题，但还是确实让大家能伸手一把（原文作者真心是手把手教学）。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/06/Change-Your-App-Icon-at-Build-time/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -845,6 +377,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/24/iOS-WKWebview-Tips/"
+           data-title="WKWebview tips" data-url="https://www.devhua.com/2017/04/24/iOS-WKWebview-Tips/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -864,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar/avatar.png"
@@ -955,6 +504,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WKWebview-踩坑之旅（正在更新…）"><span class="nav-number">1.</span> <span class="nav-text">WKWebview 踩坑之旅（正在更新…）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.0.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.0.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WKWebview使用注意点"><span class="nav-number">1.0.3.</span> <span class="nav-text">WKWebview使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-加载本地html注意区分系统版本"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1. 加载本地html注意区分系统版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-跨域跳转处理"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2.跨域跳转处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-共享cookie问题"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3.共享cookie问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-部分特殊页面点击链接事件失效"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">4.部分特殊页面点击链接事件失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-页面跳转后再返回不会执行script和Ajax"><span class="nav-number">1.0.3.5.</span> <span class="nav-text">5.页面跳转后再返回不会执行script和Ajax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-数据清除"><span class="nav-number">1.0.3.6.</span> <span class="nav-text">6.数据清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-横竖屏切换调整wkwebview视图"><span class="nav-number">1.0.3.7.</span> <span class="nav-text">7.横竖屏切换调整wkwebview视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wkwebview刷新机制"><span class="nav-number">1.0.4.</span> <span class="nav-text">wkwebview刷新机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wkwebview致命缺陷-NSURLProtocol问题"><span class="nav-number">1.0.5.</span> <span class="nav-text">wkwebview致命缺陷 - NSURLProtocol问题</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -1050,6 +616,167 @@
   
 
   
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   
 

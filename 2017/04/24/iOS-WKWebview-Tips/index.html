@@ -66,7 +66,7 @@
 <meta property="og:url" content="https://www.devhua.com/2017/04/24/iOS-WKWebview-Tips/index.html">
 <meta property="og:site_name" content="Devhua's Blog">
 <meta property="og:description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
-<meta property="og:updated_time" content="2017-04-25T03:53:41.000Z">
+<meta property="og:updated_time" content="2017-04-25T10:48:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WKWebview tips">
 <meta name="twitter:description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
@@ -310,7 +310,7 @@
 <h4 id="6-数据清除"><a href="#6-数据清除" class="headerlink" title="6.数据清除"></a>6.数据清除</h4><p>iOS 8下<code>WKWebsiteDataStore</code>还不支持，因此需要手动删除Cookies，Caches，Webkit文件夹（注意数据保存的路径问题）<br>iOS 9虽然有<code>WKWebsiteDataStore</code>接口，但实际使用起来会有概率性crash情况。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">NSSet *websiteDataTypes</div><div class="line">= [NSSet setWithArray:@[</div><div class="line">                        WKWebsiteDataTypeDiskCache,</div><div class="line">                        WKWebsiteDataTypeOfflineWebApplicationCache,</div><div class="line">                        WKWebsiteDataTypeMemoryCache,</div><div class="line">                        WKWebsiteDataTypeLocalStorage,</div><div class="line">                        WKWebsiteDataTypeCookies,</div><div class="line">                        WKWebsiteDataTypeSessionStorage,</div><div class="line">                        WKWebsiteDataTypeIndexedDBDatabases,</div><div class="line">                        WKWebsiteDataTypeWebSQLDatabases</div><div class="line">                        ]];</div><div class="line">//// All kinds of data</div><div class="line">//NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];</div><div class="line">//// Date from</div><div class="line">NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];</div><div class="line">//// Execute</div><div class="line">[[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^&#123;</div><div class="line">   // Done</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
 <p><strong>因此建议直接根据路径删除文件夹（iOS 8和iOS 9后数据保存的路径不一致，需要判断）</strong></p>
-<h4 id="7-横竖屏切换调整wkwebview视图"><a href="#7-横竖屏切换调整wkwebview视图" class="headerlink" title="7.横竖屏切换调整wkwebview视图"></a>7.横竖屏切换调整wkwebview视图</h4><h3 id="wkwebview刷新机制"><a href="#wkwebview刷新机制" class="headerlink" title="wkwebview刷新机制"></a>wkwebview刷新机制</h3><p>在一些低端机型上，滑动webview时明显就一段一段的白屏出现，跟UIWebview表现差远了。这引起了兴趣，查看并研究了下源码，发现wkwebview并不是跟uiwebview一样渲染所有网络数据，而是一屏一屏的渲染，也是这样才有了内存占用少的优势。也有一篇源码的文章推荐下<a href="http://www.jianshu.com/p/1d739e2e7ed2" target="_blank" rel="external">WKWebView刷新机制小探</a></p>
+<h4 id="7-横竖屏切换调整wkwebview视图"><a href="#7-横竖屏切换调整wkwebview视图" class="headerlink" title="7.横竖屏切换调整wkwebview视图"></a>7.横竖屏切换调整wkwebview视图</h4><h4 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h4><h3 id="wkwebview刷新机制"><a href="#wkwebview刷新机制" class="headerlink" title="wkwebview刷新机制"></a>wkwebview刷新机制</h3><p>在一些低端机型上，滑动webview时明显就一段一段的白屏出现，跟UIWebview表现差远了。这引起了兴趣，查看并研究了下源码，发现wkwebview并不是跟uiwebview一样渲染所有网络数据，而是一屏一屏的渲染，也是这样才有了内存占用少的优势。也有一篇源码的文章推荐下<a href="http://www.jianshu.com/p/1d739e2e7ed2" target="_blank" rel="external">WKWebView刷新机制小探</a></p>
 <blockquote>
 <p>WKContentView就是WKWebView内容渲染的容器。在Reveal的树状图上面可以看到，渲染页面中，展示在页面上的渲染单元是WKCompositingView，WKCompositingView可以嵌套WKCompositingView。其中的一个WKCompositingView实例，将包含多个WKCompositingView子实例。类似于UITableView的重用机制，多个WKCompositingView的父View就相当于UITableView，WKCompositingView就相当于UITableViewCell，只展示可视区域的内容，达到性能优化的目的。</p>
 <p>一个WKWebView加载的web内容，切割成多个WKCompositingView，单个WKCompositingView重用单元的面积是375x512点。</p>
@@ -346,6 +346,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/24/gcp-shadowsocks/" rel="next" title="GCP Shadowsocks">
+                <i class="fa fa-chevron-left"></i> GCP Shadowsocks
+              </a>
             
           </div>
 
@@ -425,7 +429,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -433,7 +437,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -514,7 +518,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WKWebview-踩坑之旅（正在更新…）"><span class="nav-number">1.</span> <span class="nav-text">WKWebview 踩坑之旅（正在更新…）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.0.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.0.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WKWebview使用注意点"><span class="nav-number">1.0.3.</span> <span class="nav-text">WKWebview使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-加载本地html注意区分系统版本"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1. 加载本地html注意区分系统版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-跨域跳转处理"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2.跨域跳转处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-共享cookie问题"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3.共享cookie问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-部分特殊页面点击链接事件失效"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">4.部分特殊页面点击链接事件失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-页面跳转后再返回不会执行script和Ajax"><span class="nav-number">1.0.3.5.</span> <span class="nav-text">5.页面跳转后再返回不会执行script和Ajax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-数据清除"><span class="nav-number">1.0.3.6.</span> <span class="nav-text">6.数据清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-横竖屏切换调整wkwebview视图"><span class="nav-number">1.0.3.7.</span> <span class="nav-text">7.横竖屏切换调整wkwebview视图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wkwebview刷新机制"><span class="nav-number">1.0.4.</span> <span class="nav-text">wkwebview刷新机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wkwebview致命缺陷-NSURLProtocol问题"><span class="nav-number">1.0.5.</span> <span class="nav-text">wkwebview致命缺陷 - NSURLProtocol问题</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WKWebview-踩坑之旅（正在更新…）"><span class="nav-number">1.</span> <span class="nav-text">WKWebview 踩坑之旅（正在更新…）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.0.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.0.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WKWebview使用注意点"><span class="nav-number">1.0.3.</span> <span class="nav-text">WKWebview使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-加载本地html注意区分系统版本"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">1. 加载本地html注意区分系统版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-跨域跳转处理"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">2.跨域跳转处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-共享cookie问题"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">3.共享cookie问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-部分特殊页面点击链接事件失效"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">4.部分特殊页面点击链接事件失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-页面跳转后再返回不会执行script和Ajax"><span class="nav-number">1.0.3.5.</span> <span class="nav-text">5.页面跳转后再返回不会执行script和Ajax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-数据清除"><span class="nav-number">1.0.3.6.</span> <span class="nav-text">6.数据清除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-横竖屏切换调整wkwebview视图"><span class="nav-number">1.0.3.7.</span> <span class="nav-text">7.横竖屏切换调整wkwebview视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8"><span class="nav-number">1.0.3.8.</span> <span class="nav-text">8.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wkwebview刷新机制"><span class="nav-number">1.0.4.</span> <span class="nav-text">wkwebview刷新机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wkwebview致命缺陷-NSURLProtocol问题"><span class="nav-number">1.0.5.</span> <span class="nav-text">wkwebview致命缺陷 - NSURLProtocol问题</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

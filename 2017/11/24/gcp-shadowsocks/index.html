@@ -59,21 +59,21 @@
 
 
 
-<meta name="description" content="一键式通过GCP自建科学上网服务1.前期准备需要准备一张visa卡（本人使用的是招行visa信用卡），在google cloud platform注册账号信息  说明：GCP新用户有免费一年的使用时长，配额是300美金  2.在GCP的控制台上创建Compute Engine的VM实例如图创建具体机器配置可以根据自己使用情况来定博主选的是Debain系统 1.7G内存 配置ssh远程登录登录（gc">
+<meta name="description" content="一键式通过GCP自建科学上网服务1.前期准备需要准备一张visa卡（本人使用的是招行visa信用卡），在google cloud platform注册账号信息  说明：GCP新用户有免费一年的使用时长，配额是300美金">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCP Shadowsocks">
 <meta property="og:url" content="https://www.devhua.com/2017/11/24/gcp-shadowsocks/index.html">
 <meta property="og:site_name" content="Devhua's Blog">
-<meta property="og:description" content="一键式通过GCP自建科学上网服务1.前期准备需要准备一张visa卡（本人使用的是招行visa信用卡），在google cloud platform注册账号信息  说明：GCP新用户有免费一年的使用时长，配额是300美金  2.在GCP的控制台上创建Compute Engine的VM实例如图创建具体机器配置可以根据自己使用情况来定博主选的是Debain系统 1.7G内存 配置ssh远程登录登录（gc">
+<meta property="og:description" content="一键式通过GCP自建科学上网服务1.前期准备需要准备一张visa卡（本人使用的是招行visa信用卡），在google cloud platform注册账号信息  说明：GCP新用户有免费一年的使用时长，配额是300美金">
 <meta property="og:image" content="https://www.devhua.com/2017/11/24/gcp-shadowsocks/1511493290168.png">
 <meta property="og:image" content="https://www.devhua.com/2017/11/24/gcp-shadowsocks/1511504467509.png">
 <meta property="og:image" content="https://www.devhua.com/2017/11/24/gcp-shadowsocks/1511496865202.png">
 <meta property="og:image" content="https://www.devhua.com/2017/11/24/gcp-shadowsocks/1511496870752.png">
-<meta property="og:updated_time" content="2017-11-24T07:27:46.000Z">
+<meta property="og:updated_time" content="2017-12-20T10:05:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCP Shadowsocks">
-<meta name="twitter:description" content="一键式通过GCP自建科学上网服务1.前期准备需要准备一张visa卡（本人使用的是招行visa信用卡），在google cloud platform注册账号信息  说明：GCP新用户有免费一年的使用时长，配额是300美金  2.在GCP的控制台上创建Compute Engine的VM实例如图创建具体机器配置可以根据自己使用情况来定博主选的是Debain系统 1.7G内存 配置ssh远程登录登录（gc">
+<meta name="twitter:description" content="一键式通过GCP自建科学上网服务1.前期准备需要准备一张visa卡（本人使用的是招行visa信用卡），在google cloud platform注册账号信息  说明：GCP新用户有免费一年的使用时长，配额是300美金">
 <meta name="twitter:image" content="https://www.devhua.com/2017/11/24/gcp-shadowsocks/1511493290168.png">
 
 
@@ -301,9 +301,10 @@
 <blockquote>
 <p>说明：GCP新用户有免费一年的使用时长，配额是300美金</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="2-在GCP的控制台上创建Compute-Engine的VM实例"><a href="#2-在GCP的控制台上创建Compute-Engine的VM实例" class="headerlink" title="2.在GCP的控制台上创建Compute Engine的VM实例"></a>2.在GCP的控制台上创建Compute Engine的VM实例</h3><h4 id="如图创建"><a href="#如图创建" class="headerlink" title="如图创建"></a>如图创建<img src="/2017/11/24/gcp-shadowsocks/1511493290168.png" alt="Alt text"></h4><p>具体机器配置可以根据自己使用情况来定<br>博主选的是<a href="https://zh.wikipedia.org/wiki/Debian" target="_blank" rel="external">Debain系统</a> 1.7G内存</p>
 <h4 id="配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）"><a href="#配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）" class="headerlink" title="配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）"></a>配置ssh远程登录登录（gcp自动会根据你google账号配置<strong>网页端ssh登录方式</strong>的信息）</h4><p>使用自己电脑登录还需要将电脑的ssh key添加到Compute Engine -&gt; 元数据 -&gt; ssh密钥 中</p>
-<h3 id="3-远程登录google云服务器进行配置"><a href="#3-远程登录google云服务器进行配置" class="headerlink" title="3.远程登录google云服务器进行配置"></a>3.远程登录google云服务器进行配置</h3><h4 id="登录完成后执行脚本"><a href="#登录完成后执行脚本" class="headerlink" title="登录完成后执行脚本"></a>登录完成后执行脚本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -N --no-check-certificate https://softs.fun/Bash/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash ssrmu.sh</div></pre></td></tr></table></figure>
+<h3 id="3-远程登录google云服务器进行配置"><a href="#3-远程登录google云服务器进行配置" class="headerlink" title="3.远程登录google云服务器进行配置"></a>3.远程登录google云服务器进行配置</h3><h4 id="登录完成后执行脚（sudo-执行）"><a href="#登录完成后执行脚（sudo-执行）" class="headerlink" title="登录完成后执行脚（sudo 执行）"></a>登录完成后执行脚（sudo 执行）</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -N --no-check-certificate https://softs.fun/Bash/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash ssrmu.sh</div></pre></td></tr></table></figure>
 <p>如图：<img src="/2017/11/24/gcp-shadowsocks/1511504467509.png" alt="Alt text"><br>根据脚本提示安装ShadowsocksR并设置用户信息，包含用户名密码，端口号等<br>加密：rc4-md5<br>协议：origin<br>混淆：plain</p>
 <h4 id="启动BBR-TCP加速使你的上网体验更加流畅"><a href="#启动BBR-TCP加速使你的上网体验更加流畅" class="headerlink" title="启动BBR TCP加速使你的上网体验更加流畅"></a>启动BBR TCP加速使你的上网体验更加流畅</h4><blockquote>
 <p>BBR (Bottleneck Bandwidth and RTT)是由google工程师编写的新的 TCP 拥塞控制算法，目的是要尽量跑满带宽, 并且尽量不要有排队的情况。</p>
@@ -330,6 +331,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/20/iOS-Learn-Notes/" rel="next" title="iOS近期知识总结">
+                <i class="fa fa-chevron-left"></i> iOS近期知识总结
+              </a>
             
           </div>
 
@@ -409,7 +414,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -498,7 +503,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一键式通过GCP自建科学上网服务"><span class="nav-number">1.</span> <span class="nav-text">一键式通过GCP自建科学上网服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前期准备"><span class="nav-number">1.1.</span> <span class="nav-text">1.前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在GCP的控制台上创建Compute-Engine的VM实例"><span class="nav-number">1.2.</span> <span class="nav-text">2.在GCP的控制台上创建Compute Engine的VM实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如图创建"><span class="nav-number">1.2.1.</span> <span class="nav-text">如图创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）"><span class="nav-number">1.2.2.</span> <span class="nav-text">配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-远程登录google云服务器进行配置"><span class="nav-number">1.3.</span> <span class="nav-text">3.远程登录google云服务器进行配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录完成后执行脚本"><span class="nav-number">1.3.1.</span> <span class="nav-text">登录完成后执行脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动BBR-TCP加速使你的上网体验更加流畅"><span class="nav-number">1.3.2.</span> <span class="nav-text">启动BBR TCP加速使你的上网体验更加流畅</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPC网络配置"><span class="nav-number">1.4.</span> <span class="nav-text">VPC网络配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一键式通过GCP自建科学上网服务"><span class="nav-number">1.</span> <span class="nav-text">一键式通过GCP自建科学上网服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-前期准备"><span class="nav-number">1.1.</span> <span class="nav-text">1.前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在GCP的控制台上创建Compute-Engine的VM实例"><span class="nav-number">1.2.</span> <span class="nav-text">2.在GCP的控制台上创建Compute Engine的VM实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如图创建"><span class="nav-number">1.2.1.</span> <span class="nav-text">如图创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）"><span class="nav-number">1.2.2.</span> <span class="nav-text">配置ssh远程登录登录（gcp自动会根据你google账号配置网页端ssh登录方式的信息）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-远程登录google云服务器进行配置"><span class="nav-number">1.3.</span> <span class="nav-text">3.远程登录google云服务器进行配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录完成后执行脚（sudo-执行）"><span class="nav-number">1.3.1.</span> <span class="nav-text">登录完成后执行脚（sudo 执行）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动BBR-TCP加速使你的上网体验更加流畅"><span class="nav-number">1.3.2.</span> <span class="nav-text">启动BBR TCP加速使你的上网体验更加流畅</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPC网络配置"><span class="nav-number">1.4.</span> <span class="nav-text">VPC网络配置</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

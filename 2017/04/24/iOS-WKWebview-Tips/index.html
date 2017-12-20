@@ -66,7 +66,7 @@
 <meta property="og:url" content="https://www.devhua.com/2017/04/24/iOS-WKWebview-Tips/index.html">
 <meta property="og:site_name" content="Devhua's Blog">
 <meta property="og:description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
-<meta property="og:updated_time" content="2017-04-25T10:48:37.000Z">
+<meta property="og:updated_time" content="2017-12-20T10:17:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WKWebview tips">
 <meta name="twitter:description" content="WKWebview 踩坑之旅（正在更新…）前言关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考nshipster介绍WKWebview学习WKWebview需研究源码，可以调试下miniBrowser项目 背景在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和saf">
@@ -294,6 +294,7 @@
       
         <h1 id="WKWebview-踩坑之旅（正在更新…）"><a href="#WKWebview-踩坑之旅（正在更新…）" class="headerlink" title="WKWebview 踩坑之旅（正在更新…）"></a>WKWebview 踩坑之旅（正在更新…）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考<br><a href="http://nshipster.cn/wkwebkit/" target="_blank" rel="external">nshipster介绍WKWebview</a><br>学习WKWebview需研究<a href="https://github.com/WebKit/webkit" target="_blank" rel="external">源码</a>，可以调试下miniBrowser项目</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和safari相同的JavaScript引擎等优势，但由于其本身的不完善和一些坑点以及迁移的工作量等问题，一直未深入研究迁移方案。<br>但多个UIWebview浏览的内存暴涨导致容易crash一直是块心病。于是还是尝试迁移到wkwebview，便有了一段<strong>踩坑之旅</strong>。</p>
+<a id="more"></a>
 <h3 id="WKWebview使用注意点"><a href="#WKWebview使用注意点" class="headerlink" title="WKWebview使用注意点"></a>WKWebview使用注意点</h3><p>网上也已经有不少使用注意点的总结文章，在此先贴出了，然后讲些自己遇到的问题和处理方案。<br><a href="http://mp.weixin.qq.com/s/rhYKLIbXOsUJC_n6dt9UfA" target="_blank" rel="external">WKWebView 那些坑</a><br><a href="https://github.com/ShingoFukuyama/WKWebViewTips" target="_blank" rel="external">WKWebviewTips</a></p>
 <h4 id="1-加载本地html注意区分系统版本"><a href="#1-加载本地html注意区分系统版本" class="headerlink" title="1. 加载本地html注意区分系统版本"></a>1. 加载本地html注意区分系统版本</h4><p>iOS9及以上版本可以使用<br><code>[self.webview loadRequest:request]</code></p>
 <p><strong>本地资源生成的request在iOS8下无法加载</strong><br>iOS8下加载本地文件: <code>[self.webview loadHTMLString:str]</code><br> <a href="http://stackoverflow.com/questions/27803341/swift-wkwebview-loading-local-file-not-working-on-a-device" target="_blank" rel="external">http://stackoverflow.com/questions/27803341/swift-wkwebview-loading-local-file-not-working-on-a-device</a></p>
@@ -429,7 +430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

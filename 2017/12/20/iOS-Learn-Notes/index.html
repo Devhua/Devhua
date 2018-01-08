@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Devhua's Blog">
 <meta property="og:description" content="1.APP之间通信方式有哪些 URL Scheme（在info.plist中配置LSApplicationQueriesSchemes，指定目标app的scheme，然后在目标app的info.plist中配置好URL types）场景：分享，支付等 Keychain本质是sqlite数据库，独立每个app的沙盒之外，即使删除app，keychain中的信息还存在特点：不同app之间需要通过key">
 <meta property="og:image" content="https://camo.githubusercontent.com/130bd5189b7aa2e16c273874f8082c80cc72979f/687474703a2f2f6f786c366d787932742e626b742e636c6f7564646e2e636f6d2f6368616e6762612f4b54564854545043616368652d666c6f772d63686172742e6a706567">
-<meta property="og:updated_time" content="2018-01-01T15:02:36.000Z">
+<meta property="og:updated_time" content="2018-01-08T16:06:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS近期知识总结">
 <meta name="twitter:description" content="1.APP之间通信方式有哪些 URL Scheme（在info.plist中配置LSApplicationQueriesSchemes，指定目标app的scheme，然后在目标app的info.plist中配置好URL types）场景：分享，支付等 Keychain本质是sqlite数据库，独立每个app的沙盒之外，即使删除app，keychain中的信息还存在特点：不同app之间需要通过key">
@@ -308,10 +308,7 @@
 <li><p>SBJSON 、JSONModel<br><strong>字典转模型框架</strong>：<br>a.Mantle 需要继承自MTModel<br>b.JSONModel 需要继承自JSONModel<br>c.MJExtension 不需要继承，无代码侵入性（运行时）<br>注意点：json解析中，jsonkit解析空数据时会变成NSNull类型，既不是nil也是string。解决方案可以使用<a href="https://github.com/nicklockwood/NullSafe" target="_blank" rel="external">NullSafe</a><br>使用afnetwork时可以设置<code>self.removesKeysWithNullValues = YES;</code></p>
 </li>
 </ul>
-<h4 id="3-AFNetwork3-x源码解析"><a href="#3-AFNetwork3-x源码解析" class="headerlink" title="3.AFNetwork3.x源码解析"></a>3.AFNetwork3.x源码解析</h4><p>源文件简而言之：AFHTTPSessionManager -&gt; 简单的HTTP请求封装<br>AFURLSessionManager -&gt; 网络通信核心，负责调配NSURLSession启动网络任务，设置session代理的转发、操作回调线程执行、组装参数及解析参数的调配等<br>AFNetworkReachabilityManager -&gt; 网络状态监控<br>AFSecurityPolicy -&gt; 网络安全策略<br>AFURLRequestSerialization/AFURLResponseSerialization -&gt; 数据序列化和反序列化<br>工具包AF UIKit -&gt; 图片下载及缓存策略，网络请求时状态栏上的菊花出现时机等<br>追问：self.operationQueue.maxConcurrentOperationCount = 1 AF3.x中操作队列并发线程数设置为1的目的？</p>
-<blockquote>
-<p>1）众所周知，AF2.x所有的回调是在一条线程，这条线程是AF的常驻线程，而这一条线程正是AF调度request的思想精髓所在，所以第一个目的就是为了和之前版本保持一致。<br>2）因为跟代理相关的一些操作AF都使用了NSLock。所以就算Queue的并发数设置为n，因为多线程回调，锁的等待，导致所提升的程序速度也并不明显。反而多task回调导致的多线程并发，平白浪费了部分性能。<br>而设置Queue的并发数为1，（注：这里虽然回调Queue的并发数为1，仍然会有不止一条线程，但是因为是串行回调，所以同一时间，只会有一条线程在操作AFUrlSessionManager的那些方法。）至少回调的事件，是不需要多线程并发的。回调没有了NSLock的等待时间，所以对时间并没有多大的影响。（注：但是还是会有多线程的操作的，因为设置刚开始调起请求的时候，是在主线程的，而回调则是串行分线程。）</p>
-</blockquote>
+<h4 id="3-AFNetwork3-x源码解析"><a href="#3-AFNetwork3-x源码解析" class="headerlink" title="3.AFNetwork3.x源码解析"></a>3.AFNetwork3.x源码解析</h4><p>源文件简而言之：AFHTTPSessionManager -&gt; 简单的HTTP请求封装<br>AFURLSessionManager -&gt; 网络通信核心，负责调配NSURLSession启动网络任务，设置session代理的转发、操作回调线程执行、组装参数及解析参数的调配等<br>AFNetworkReachabilityManager -&gt; 网络状态监控<br>AFSecurityPolicy -&gt; 网络安全策略<br>AFURLRequestSerialization/AFURLResponseSerialization -&gt; 数据序列化和反序列化<br>工具包AF UIKit -&gt; 图片下载及缓存策略，网络请求时状态栏上的菊花出现时机等<br>追问：self.operationQueue.maxConcurrentOperationCount = 1 AF3.x中操作队列并发线程数设置为1的目的？<br><a id="more"></a><br>1）众所周知，AF2.x所有的回调是在一条线程，这条线程是AF的常驻线程，而这一条线程正是AF调度request的思想精髓所在，所以第一个目的就是为了和之前版本保持一致。<br>2）因为跟代理相关的一些操作AF都使用了NSLock。所以就算Queue的并发数设置为n，因为多线程回调，锁的等待，导致所提升的程序速度也并不明显。反而多task回调导致的多线程并发，平白浪费了部分性能。<br>而设置Queue的并发数为1，（注：这里虽然回调Queue的并发数为1，仍然会有不止一条线程，但是因为是串行回调，所以同一时间，只会有一条线程在操作AFUrlSessionManager的那些方法。）至少回调的事件，是不需要多线程并发的。回调没有了NSLock的等待时间，所以对时间并没有多大的影响。（注：但是还是会有多线程的操作的，因为设置刚开始调起请求的时候，是在主线程的，而回调则是串行分线程。）</p>
 <p>做了什么：<br>1.各种请求方式request的拼接<br>2.对共用参数（session级别）和一些私用参数（task级别）的分离（<strong>代理转发的架构模式</strong>）<br>3.自定义的https认证处理<br>4.请求到数据后，做了各种数据格式的解析，支持自定义解析<br>5.成功和失败的回调处理<br>6.提供了UIKit的扩展（图片下载、缓存展示，菊花展示）</p>
 <h4 id="4-野指针是什么，iOS-开发中什么情况下会有野指针？"><a href="#4-野指针是什么，iOS-开发中什么情况下会有野指针？" class="headerlink" title="4.野指针是什么，iOS 开发中什么情况下会有野指针？"></a>4.野指针是什么，iOS 开发中什么情况下会有野指针？</h4><p>野指针是不为 nil，但是指向已经被释放的内存的指针。<br>__unsafe_unretain或者assign的指针，对象释放后会出现野指针。<br>一般情况下oc使用了weak指针，在对象销毁时指针会置nil<br>Student *stu = [[Student alloc] init];<br>[stu setAge:10];<br>[stu release];这里已经释放内存<br>[stu setAge:10];—》报错</p>
 <h4 id="5-简述runtime机制"><a href="#5-简述runtime机制" class="headerlink" title="5.简述runtime机制"></a>5.简述runtime机制</h4><p>OC是运行时语言，其中最重要的是消息机制，实现动态调用。<br>执行某个方法，实际是在运行时向对象发消息。<br>这里涉及到iOS中NSObject的对象模型，Class isa指针，指向metaclass也就是静态的Class。一般一个Obj对象中的isa会指向普通的Class，这个Class中存储普通成员变量和对 象方法（“-”开头的方法），普通Class中的isa指针指向静态Class，静态Class中存储static类型成员变量和类方法（“+”开头的方 法）</p>
@@ -504,7 +501,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

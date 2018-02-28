@@ -547,7 +547,7 @@
 
       
         
-          <h1 id="WKWebview-踩坑之旅（正在更新…）"><a href="#WKWebview-踩坑之旅（正在更新…）" class="headerlink" title="WKWebview 踩坑之旅（正在更新…）"></a>WKWebview 踩坑之旅（正在更新…）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考<br><a href="http://nshipster.cn/wkwebkit/">nshipster介绍WKWebview</a><br>学习WKWebview需研究<a href="https://github.com/WebKit/webkit">源码</a>，可以调试下miniBrowser项目</p>
+          <h1 id="WKWebview-踩坑之旅"><a href="#WKWebview-踩坑之旅" class="headerlink" title="WKWebview 踩坑之旅"></a>WKWebview 踩坑之旅</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>关于iOS 8后出来的WKWebview的简介，及对比UIWebview的优势 就不再做赘述了。可以参考<br><a href="http://nshipster.cn/wkwebkit/">nshipster介绍WKWebview</a><br>学习WKWebview需研究<a href="https://github.com/WebKit/webkit">源码</a>，可以调试下miniBrowser项目</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在WKWebview出来这几年后，老项目一直未迁移到wkwebview，尽管我们知道它有着60 fps滚动刷新率，内存占用少，和safari相同的JavaScript引擎等优势，但由于其本身的不完善和一些坑点以及迁移的工作量等问题，一直未深入研究迁移方案。<br>但多个UIWebview浏览的内存暴涨导致容易crash一直是块心病。于是还是尝试迁移到wkwebview，便有了一段<strong>踩坑之旅</strong>。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/04/24/iOS-WKWebview-Tips/#more" rel="contents">

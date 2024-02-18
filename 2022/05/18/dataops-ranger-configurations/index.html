@@ -27,16 +27,16 @@
 <meta property="og:site_name" content="华少的博客">
 <meta property="og:description" content="前言近年来，越来越多的企业享受大数据平台实施带来的数据价值，也期望接入更多的企业数据及开放不同业务域的数据给不同的用户。因此，在大数据平台构建过程中，需实现完整的权限管理流程，给正确的用户以访问正确的资源权限，避免数据被窃取和被破坏。本文基于此背景，介绍大数据平台通用权限管理框架Ranger 的原理、企业级权限管理设计以及一些实践分享。希望能给大家在大数据平台权限管理落地上提供一些参考。 Rang">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/dataops-ranger-configurations/ranger-arch.jpg">
-<meta property="og:image" content="http://example.com/dataops-ranger-configurations/ranger-user-sync.jpg">
-<meta property="og:image" content="http://example.com/dataops-ranger-configurations/ranger-resources.jpg">
-<meta property="og:image" content="http://example.com/dataops-ranger-configurations/ranger-access-log.jpg">
+<meta property="og:image" content="http://example.com/2022/05/18/dataops-ranger-configurations/ranger-arch.jpg">
+<meta property="og:image" content="http://example.com/2022/05/18/dataops-ranger-configurations/ranger-user-sync.jpg">
+<meta property="og:image" content="http://example.com/2022/05/18/dataops-ranger-configurations/ranger-resources.jpg">
+<meta property="og:image" content="http://example.com/2022/05/18/dataops-ranger-configurations/ranger-access-log.jpg">
 <meta property="article:published_time" content="2022-05-18T09:41:47.000Z">
-<meta property="article:modified_time" content="2024-02-18T09:48:52.472Z">
+<meta property="article:modified_time" content="2024-02-18T10:04:28.863Z">
 <meta property="article:author" content="洛上倾城华少">
 <meta property="article:tag" content="DataOps">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/dataops-ranger-configurations/ranger-arch.jpg">
+<meta name="twitter:image" content="http://example.com/2022/05/18/dataops-ranger-configurations/ranger-arch.jpg">
 
 <link rel="canonical" href="http://example.com/2022/05/18/dataops-ranger-configurations/">
 
@@ -193,7 +193,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-18 17:48:52" itemprop="dateModified" datetime="2024-02-18T17:48:52+08:00">2024-02-18</time>
+                <time title="修改时间：2024-02-18 18:04:28" itemprop="dateModified" datetime="2024-02-18T18:04:28+08:00">2024-02-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
 
 <p>详细的权限管理模型和流程可以搜索之前同事发的博文<code>权限管理数据模型、权限申请审批与认证流总结</code>;</p>
 <p>目前已有的授权管理开源框架有<a target="_blank" rel="noopener" href="https://sentry.apache.org/">Sentry</a> 和 <a target="_blank" rel="noopener" href="https://ranger.apache.org/">Ranger</a>。Sentry 是由Cloudera 公司开发，在CDH 集群中提供的权限管理框架；Ranger 最初是由Hortonworks 主导开发，在HDP 集群中集成使用，后续Cloudera 和 Hortonworks 两家公司合并后统一推出的大数据平台产品CDP 中默认提供的是Ranger。两者都可以做到基于RBAC 权限管控模型做到细粒度的Hdadoop 系统权限管理的，而Ranger 对比Sentry 更加通用，支持的资源也更多。Ranger 通过与Atlas 集成还可以做到基于ABAC 的权限管控。</p>
-<p><img src="/dataops-ranger-configurations/ranger-arch.jpg" alt="ranger-arch"><br>如上流程图所示，Ranger 是集中式的权限管理，可以通过Web UI或REST API 管理，基于策略的访问权限控制，支持多种大数据组件资源，如HDFS、Hive、Kafka、Yarn、Atlas和Nifi等，并提供审计功能，使用户的操作有迹可循。</p>
+<p><img src="/2022/05/18/dataops-ranger-configurations/ranger-arch.jpg" alt="ranger-arch"><br>如上流程图所示，Ranger 是集中式的权限管理，可以通过Web UI或REST API 管理，基于策略的访问权限控制，支持多种大数据组件资源，如HDFS、Hive、Kafka、Yarn、Atlas和Nifi等，并提供审计功能，使用户的操作有迹可循。</p>
 <p>Ranger 主体包含了三个服务：</p>
 <ul>
 <li>Ranger Admin: 提供权限策略管控服务，分配相应资源给对应的用户、组或者角色。</li>
@@ -267,11 +267,11 @@
 <li>在Ranger 中配置Role 和Group的对应关系、Role 访问相应资源的Policy</li>
 <li>各个资源的Plugin 同步Ranger 中的Policy 以做权限校验</li>
 </ol>
-<p>以下是具体链路流程图:<br><img src="/dataops-ranger-configurations/ranger-user-sync.jpg" alt="ranger-user-sync"></p>
+<p>以下是具体链路流程图:<br><img src="/2022/05/18/dataops-ranger-configurations/ranger-user-sync.jpg" alt="ranger-user-sync"></p>
 <p>在具体实践前，需要理解AD&#x2F;LDAP 中的一些<a target="_blank" rel="noopener" href="https://blog.51cto.com/407711169/1439623">LDAP 基础概念</a>;<br>需要注意Ranger 配置中的User Search Base &amp; Fliter 和 Group Search Base &amp; Fliter 规则（CN 可以使用星号<code>*</code>匹配），两者是相互影响的。具体配置可以参考这篇文章<a target="_blank" rel="noopener" href="https://docs.cloudera.com/cdp-private-cloud-base/7.1.6/security-ranger-authentication-unix-ldap-ad/topics/security-ranger-authentication-ad-integration-usersync.html">Ranger Usersync</a></p>
 <p>小Tips: 在配置具体Sync 规则前，可以使用LDAP 命令search 验证一下。参考<a target="_blank" rel="noopener" href="https://ldapwiki.com/wiki/LDAP%20Query%20Basic%20Examples">LDAP Query Basic Examples</a></p>
-<h3 id="Ranger-资源管理与审计"><a href="#Ranger-资源管理与审计" class="headerlink" title="Ranger 资源管理与审计"></a>Ranger 资源管理与审计</h3><p>Ranger 支持的大数据资源非常丰富且权限项也比较完整，见下表<br><img src="/dataops-ranger-configurations/ranger-resources.jpg" alt="ranger-resources"><br>在Ranger 权限策略访问决策树中支持黑白名单的，具体优先级是<code>黑名单优先级高于白名单，黑名单排除优先级高于黑名单，白名单排除优先级高于白名单，白名单排除优先级高于白名单</code>。<br>此外，如果没有policy 能决策访问，一般是认为没有权限拒绝访问的，然而Ranger 还可以选择将决策放给系统自身的访问控制层。如HDFS 支持hdfs-acl。</p>
-<p>Ranger 可以提供多方面的审计信息，如用户访问资源记录，管理员更新Policy记录，Ranger Web UI登录session记录，资源Plugins同步情况和状态以及用户同步记录。其中最关心的是Access log，如下图所示：<br><img src="/dataops-ranger-configurations/ranger-access-log.jpg" alt="ranger-access-log"><br>具体的字段含义可以在这里查看<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/RANGER/Ranger+Audit+Schema">Ranger Audit Schema</a><br>需要注意的是Ranger 的审计日志量非常大，还会写入到Solr 中，如果Solr 角色配置的内存不足，很容易出现内存溢出的情况，目前项目上的实践是去掉不必要的审计（非业务数据组件不接入审计）、缩短审计日志保存时间和增大Solr 内存。</p>
+<h3 id="Ranger-资源管理与审计"><a href="#Ranger-资源管理与审计" class="headerlink" title="Ranger 资源管理与审计"></a>Ranger 资源管理与审计</h3><p>Ranger 支持的大数据资源非常丰富且权限项也比较完整，见下表<br><img src="/2022/05/18/dataops-ranger-configurations/ranger-resources.jpg" alt="ranger-resources"><br>在Ranger 权限策略访问决策树中支持黑白名单的，具体优先级是<code>黑名单优先级高于白名单，黑名单排除优先级高于黑名单，白名单排除优先级高于白名单，白名单排除优先级高于白名单</code>。<br>此外，如果没有policy 能决策访问，一般是认为没有权限拒绝访问的，然而Ranger 还可以选择将决策放给系统自身的访问控制层。如HDFS 支持hdfs-acl。</p>
+<p>Ranger 可以提供多方面的审计信息，如用户访问资源记录，管理员更新Policy记录，Ranger Web UI登录session记录，资源Plugins同步情况和状态以及用户同步记录。其中最关心的是Access log，如下图所示：<br><img src="/2022/05/18/dataops-ranger-configurations/ranger-access-log.jpg" alt="ranger-access-log"><br>具体的字段含义可以在这里查看<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/RANGER/Ranger+Audit+Schema">Ranger Audit Schema</a><br>需要注意的是Ranger 的审计日志量非常大，还会写入到Solr 中，如果Solr 角色配置的内存不足，很容易出现内存溢出的情况，目前项目上的实践是去掉不必要的审计（非业务数据组件不接入审计）、缩短审计日志保存时间和增大Solr 内存。</p>
 <h3 id="Two-More-Things"><a href="#Two-More-Things" class="headerlink" title="Two More Things"></a>Two More Things</h3><h4 id="Security-Zone"><a href="#Security-Zone" class="headerlink" title="Security Zone"></a>Security Zone</h4><p>Ranger 还支持Security Zone 功能，可以将多个资源划分到不同的Security Zone中，并给Security Zone分配不同的管理员进行权限管理。<br>如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Zone: finance</span><br><span class="line"> service: prod_hdfs; path=/finance/*, /taxes/*</span><br><span class="line"> service: prod_hive; database=finance</span><br><span class="line"> service: prod_kafka; topic=FIN_*</span><br><span class="line"> service: test_hadoop; path=/finance/*, /taxes/*</span><br><span class="line"></span><br><span class="line">Zone: sales</span><br><span class="line"> service: prod_hdfs; path=/sales/*</span><br><span class="line"> service: prod_hive; database=sales</span><br><span class="line"> service: prod_kafka; topic=SALES_*</span><br></pre></td></tr></table></figure>
 <p>可以在Ranger 配置中配置Admin User fliter，然后创建Security Zone 配置相应资源和Admin用户，注意配置Zone的资源权限时不要配置属于其他Zone的资源权限，Ranger Plugin鉴权时会先判断资源属于哪个Security Zone，然后只使用该Security Zone中配置的权限进行鉴权，如果未找到所属Zone，则使用未划分Zone 的权限鉴权。</p>
@@ -330,7 +330,10 @@
     <a href="/2018/04/20/book-internet-discuss-zhou/" rel="prev" title="读《周鸿祎自述：我的互联网方法论》">
       <i class="fa fa-chevron-left"></i> 读《周鸿祎自述：我的互联网方法论》
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/28/dataops-cdp-permission/" rel="next" title="企业私有云大数据平台权限管理分享（二）">
+      企业私有云大数据平台权限管理分享（二） <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -406,7 +409,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -476,12 +479,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">49k</span>
+    <span title="站点总字数">56k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:21</span>
+    <span title="站点阅读时长">1:33</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

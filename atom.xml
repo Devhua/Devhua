@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-02-18T09:48:52.472Z</updated>
+  <updated>2024-02-18T10:17:03.549Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,54 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DataOps 体系化</title>
+    <link href="http://example.com/2022/07/21/what-dataops/"/>
+    <id>http://example.com/2022/07/21/what-dataops/</id>
+    <published>2022-07-21T09:56:15.000Z</published>
+    <updated>2024-02-18T10:17:03.549Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;本文从企业建设大数据平台背景出发，介绍DataOps 概念目标和体系化实践建议，给企业大数据平台建设和优化提供一些借鉴。&lt;/p&gt;
+&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;近年来，数据平台在企业数字化转型过程起着越来越重要的作用，给企业的战略分析和业务推动带来强有力的数据支撑，可以快速、高质量地提供数据服务，从而实现数据价值。&lt;/p&gt;
+&lt;p&gt;然而随着企业对数据集成和分析的需求不断增长，数据源种类多，数据工具和架构复杂，对数据平台的能力要求也越来越高。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/07/21/what-dataops/data-architecture.jpg&quot; alt=&quot;data-architecture&quot;&gt;&lt;/p&gt;
+&lt;p&gt;落地大数据平台组件及处理方式也越来越繁杂，这对维护大数据稳定和持续接入新的数据需求带来了挑战，数据团队应持续优化数据平台架构和开发流程，以满足企业数据集成周期短，数据质量高的需求。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="DataOps" scheme="http://example.com/tags/DataOps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>企业私有云大数据平台权限管理分享（二）</title>
+    <link href="http://example.com/2022/05/28/dataops-cdp-permission/"/>
+    <id>http://example.com/2022/05/28/dataops-cdp-permission/</id>
+    <published>2022-05-28T09:51:44.000Z</published>
+    <updated>2024-02-18T10:04:01.404Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;上文介绍了大数据平台资源权限管理框架Ranger 的原理和企业权限管理实践，然而企业大数据平台的权限管理应该包含这个数据开发、运维链路，尤其是在平台&lt;strong&gt;多租户&lt;/strong&gt;使用的场景下，需要格外注意是否有权限管控不当问题。本文将结合CDP(Cloudera Private Platform) 平台组件，介绍平台大数据开发、运维链路上的权限管控实践。&lt;/p&gt;
+&lt;h3 id=&quot;多租户场景需求&quot;&gt;&lt;a href=&quot;#多租户场景需求&quot; class=&quot;headerlink&quot; title=&quot;多租户场景需求&quot;&gt;&lt;/a&gt;多租户场景需求&lt;/h3&gt;&lt;p&gt;在CDP 大数据平台上，有多个团队使用不同的组件，如IT 运维使用Cloudera Manager 管理大数据集群、使用Ranger 管理资源权限，多个团队使用Hue 进行ETL 任务开发和数据分析，使用Atlas 管理数据资产等。上篇中提到企业使用集中式的员工账号管理（Microsoft Active Directory），其内建Kerberos 支持，而Kerberos 也是Hadoop 生态系统中应用最广泛的用户认证管理框架。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="DataOps" scheme="http://example.com/tags/DataOps/"/>
+    
+  </entry>
+  
+  <entry>
     <title>企业私有云大数据平台权限管理分享（一）</title>
     <link href="http://example.com/2022/05/18/dataops-ranger-configurations/"/>
     <id>http://example.com/2022/05/18/dataops-ranger-configurations/</id>
     <published>2022-05-18T09:41:47.000Z</published>
-    <updated>2024-02-18T09:48:52.472Z</updated>
+    <updated>2024-02-18T10:04:28.863Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;近年来，越来越多的企业享受大数据平台实施带来的数据价值，也期望接入更多的企业数据及开放不同业务域的数据给不同的用户。因此，在大数据平台构建过程中，需实现完整的权限管理流程，给正确的用户以访问正确的资源权限，避免数据被窃取和被破坏。本文基于此背景，介绍大数据平台通用权限管理框架Ranger 的原理、企业级权限管理设计以及一些实践分享。希望能给大家在大数据平台权限管理落地上提供一些参考。&lt;/p&gt;

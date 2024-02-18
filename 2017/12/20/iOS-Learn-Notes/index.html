@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="华少的博客">
 <meta property="og:description" content="1.APP之间通信方式有哪些 URL Scheme（在info.plist中配置LSApplicationQueriesSchemes，指定目标app的scheme，然后在目标app的info.plist中配置好URL types）场景：分享，支付等 Keychain本质是sqlite数据库，独立每个app的沙盒之外，即使删除app，keychain中的信息还存在特点：不同app之间需要通过key">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/iOS-Learn-Notes/KTVHTTPCache.jpeg">
+<meta property="og:image" content="http://example.com/2017/12/20/iOS-Learn-Notes/KTVHTTPCache.jpeg">
 <meta property="article:published_time" content="2017-12-20T03:15:00.000Z">
 <meta property="article:modified_time" content="2024-01-28T03:27:09.990Z">
 <meta property="article:author" content="洛上倾城华少">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/iOS-Learn-Notes/KTVHTTPCache.jpeg">
+<meta name="twitter:image" content="http://example.com/2017/12/20/iOS-Learn-Notes/KTVHTTPCache.jpeg">
 
 <link rel="canonical" href="http://example.com/2017/12/20/iOS-Learn-Notes/">
 
@@ -312,7 +312,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">_syncQueue <span class="operator">=</span> dispatch_get_global_queue(<span class="type">DISPATCH_QUEUE_PRIORITY_DEFAULT</span>, <span class="number">0</span>);</span><br><span class="line"><span class="operator">-</span> (<span class="type">NSString</span> <span class="operator">*</span>)someString</span><br><span class="line">&#123;</span><br><span class="line">    __block <span class="type">NSString</span> <span class="operator">*</span>localSomeString;</span><br><span class="line">    dispatch_sync(_syncQueue, <span class="operator">^</span>&#123;</span><br><span class="line">        localSomeString <span class="operator">=</span> _someString;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> localSomeString;</span><br><span class="line">&#125;</span><br><span class="line"><span class="operator">-</span> (void)setSomeString:(<span class="type">NSString</span> <span class="operator">*</span>)someString</span><br><span class="line">&#123;    </span><br><span class="line">    dispatch_barrier_async(_syncQueue, <span class="operator">^</span>&#123;</span><br><span class="line">        _someString <span class="operator">=</span> someString;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="12-KTVHTTPCache原理"><a href="#12-KTVHTTPCache原理" class="headerlink" title="12.KTVHTTPCache原理"></a>12.<a target="_blank" rel="noopener" href="https://github.com/ChangbaDevs/KTVHTTPCache">KTVHTTPCache</a>原理</h4><p>唱吧播放mp4文件，avplayer+KTVHTTPCache缓存播放</p>
-<p><img src="/./iOS-Learn-Notes/KTVHTTPCache.jpeg" alt="KTVHTTPCache结构及工作流程图"></p>
+<p><img src="/2017/12/20/iOS-Learn-Notes/KTVHTTPCache.jpeg" alt="KTVHTTPCache结构及工作流程图"></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/ChangbaDevs/KTVHTTPCache#%E4%B8%8B%E9%9D%A2%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%8B%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">工作流程描述</a></p>
 <p>值得注意的几个点：<br>1.使用<a target="_blank" rel="noopener" href="https://github.com/robbiehanson/CocoaHTTPServer">CocoaHTTPServer</a>设置本地http代理服务器，hook到播放器资源加载请求<br>2.模块化设置，各个类职责单一明显<br>3.缓存策略中的<strong>分片加载数据</strong>，区分本地数据和网络数据，最小化网络下载请求<br>4.对于锁屏后server socket失效的处理方式：做URL映射时先去ping一下本地的server，如果ping不通，则重启本地server（<strong>注：这里ping本地server的逻辑实现可以看看，使用NSCondition和NSURLSessionDataTask配合调用实现</strong>）</p>
 <h4 id="13-显示动画-uiview动画-与隐示动画（calayer动画）"><a href="#13-显示动画-uiview动画-与隐示动画（calayer动画）" class="headerlink" title="13.显示动画(uiview动画)与隐示动画（calayer动画）"></a>13.显示动画(uiview动画)与隐示动画（calayer动画）</h4><ul>
@@ -462,7 +462,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -532,12 +532,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">49k</span>
+    <span title="站点总字数">56k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:21</span>
+    <span title="站点阅读时长">1:33</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

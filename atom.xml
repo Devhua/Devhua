@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-28T03:31:29.550Z</updated>
+  <updated>2024-02-18T09:48:52.472Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>企业私有云大数据平台权限管理分享（一）</title>
+    <link href="http://example.com/2022/05/18/dataops-ranger-configurations/"/>
+    <id>http://example.com/2022/05/18/dataops-ranger-configurations/</id>
+    <published>2022-05-18T09:41:47.000Z</published>
+    <updated>2024-02-18T09:48:52.472Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;近年来，越来越多的企业享受大数据平台实施带来的数据价值，也期望接入更多的企业数据及开放不同业务域的数据给不同的用户。因此，在大数据平台构建过程中，需实现完整的权限管理流程，给正确的用户以访问正确的资源权限，避免数据被窃取和被破坏。本文基于此背景，介绍大数据平台通用权限管理框架Ranger 的原理、企业级权限管理设计以及一些实践分享。希望能给大家在大数据平台权限管理落地上提供一些参考。&lt;/p&gt;
+&lt;h3 id=&quot;Ranger-原理介绍&quot;&gt;&lt;a href=&quot;#Ranger-原理介绍&quot; class=&quot;headerlink&quot; title=&quot;Ranger 原理介绍&quot;&gt;&lt;/a&gt;Ranger 原理介绍&lt;/h3&gt;&lt;p&gt;众所周知，一些常用的权限管控模型主要有:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ACL(Access Control List): 基于用户级别的权限控制；&lt;/li&gt;
+&lt;li&gt;RBAC(Role Base Access Control): 基于角色级别的权限控制；与ACL 不同的是RBAC 不用给用户单个分配权限，权限与用户之间通过角色关联；&lt;/li&gt;
+&lt;li&gt;ABAC(Attribute Base Access Control): 基于属性级别的权限控制；通过动态计算一个或者一组属性是否满足某种条件来进行权限判断，可以实现细粒度且灵活的权限控制。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="DataOps" scheme="http://example.com/tags/DataOps/"/>
+    
+  </entry>
   
   <entry>
     <title>读《周鸿祎自述：我的互联网方法论》</title>

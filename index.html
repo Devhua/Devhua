@@ -155,6 +155,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/20/ml-ray-introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="洛上倾城华少">
+      <meta itemprop="description" content="爱生活，有理想，会思考，能沟通！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="华少的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/12/20/ml-ray-introduction/" class="post-title-link" itemprop="url">聊聊通用分布式计算框架Ray</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-20 18:40:41" itemprop="dateCreated datePublished" datetime="2023-12-20T18:40:41+08:00">2023-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-18 18:51:19" itemprop="dateModified" datetime="2024-02-18T18:51:19+08:00">2024-02-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>据 OpenAI 的公开资料显示，近年爆火的 ChatGPT，是基于 Ray 进行的包括预训练、Fine Tune、强化学习等 ChatGPT 的训练。那让我们来聊聊Ray 这个框架吧。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>实际上，在2015年秋天，UC.Berkeley的 Ion Stoica教授给研究生讲系统课时，Robert和Philip 两个机器学习的学生正在做一个关于数据并行机器学习的训练，最初使用了Spark，并进行了修改叫做SparkNet，后来发现Spark 太死板，在做强化学习时，需要的计算模型非常复杂，有嵌套并行的内容发现Spark 并不擅长。于是他们研发了分布式执行引擎Ray ，主要面向未来交互式的AI，提供任务并行和高速的任务调度，并在2017年发表了论文<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1712.05889.pdf">《Ray: A Distributed Framework for Emerging AI Applications》</a>。不同于Spark 这样的BSP 计算引擎，同一stage内的任务无法相互通信，而Ray 更加底层，更加灵活，一个任务可以启动其他任务或启动actor，它们可以相互通信，还实现了全局控制状态和调度器。</p>
+<p>基于<a target="_blank" rel="noopener" href="https://github.com/ray-project/ray">Ray</a> 这项开源工作，在2019年12月，该论文的一作、二作和Ion Stoica 教授以及Michael.Jordan 教授创立了<a target="_blank" rel="noopener" href="https://www.anyscale.com/">Anyscale</a>，提供托管Ray 的服务。值得注意的是，Ion Stoica教授也是Databricks(托管Spark)的原CEO。</p>
+<p>如今，Ray 社区非常活跃，github上已经有29.3k ⭐️，很多大厂如国外的OpenAI、Uber、Shopify等，国内的有蚂蚁集团、字节等都在生产环境广泛使用。Ray峰会<a target="_blank" rel="noopener" href="https://raysummit.anyscale.com/">Ray Summit</a>参加的人数也越来越多，更多的公司采用Ray 作为分布式计算的框架。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/12/20/ml-ray-introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/21/what-dataops/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,7 +284,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-18 18:17:03" itemprop="dateModified" datetime="2024-02-18T18:17:03+08:00">2024-02-18</time>
+                <time title="修改时间：2024-02-18 18:26:39" itemprop="dateModified" datetime="2024-02-18T18:26:39+08:00">2024-02-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,8 +324,6 @@
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文从企业建设大数据平台背景出发，介绍DataOps 概念目标和体系化实践建议，给企业大数据平台建设和优化提供一些借鉴。</p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>近年来，数据平台在企业数字化转型过程起着越来越重要的作用，给企业的战略分析和业务推动带来强有力的数据支撑，可以快速、高质量地提供数据服务，从而实现数据价值。</p>
 <p>然而随着企业对数据集成和分析的需求不断增长，数据源种类多，数据工具和架构复杂，对数据平台的能力要求也越来越高。</p>
-<p><img src="/2022/07/21/what-dataops/data-architecture.jpg" alt="data-architecture"></p>
-<p>落地大数据平台组件及处理方式也越来越繁杂，这对维护大数据稳定和持续接入新的数据需求带来了挑战，数据团队应持续优化数据平台架构和开发流程，以满足企业数据集成周期短，数据质量高的需求。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/21/what-dataops/#more" rel="contents">
@@ -1038,110 +1134,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/03/20/iOS-network-design/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="洛上倾城华少">
-      <meta itemprop="description" content="爱生活，有理想，会思考，能沟通！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="华少的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/20/iOS-network-design/" class="post-title-link" itemprop="url">iOS 网络层架构设计与实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-03-20 10:28:29" itemprop="dateCreated datePublished" datetime="2016-03-20T10:28:29+08:00">2016-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-28 10:36:30" itemprop="dateModified" datetime="2024-01-28T10:36:30+08:00">2024-01-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>客户端网络层交互流程:</p>
-<ul>
-<li>获取参数，统一配置</li>
-<li>根据API配置公共参数</li>
-<li>构造网络请求</li>
-<li>发送网络请求</li>
-<li>获取返回结果</li>
-<li>展示数据</li>
-</ul>
-<p>注：此处还应该有个 <code>数据持久化</code> 流程，因项目业务层逻辑及存储方案各不相同，本篇中不展开介绍<br>另：本篇幅中暂时只涉及到HTTP的请求，TCP及UDP的网络交互处理又不一样，需要考虑的也不相同（如：TCP考虑包顺序处理及回调分发问题，UDP考虑丢包及无序处理）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/03/20/iOS-network-design/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1213,7 +1205,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1222,7 +1214,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -1283,12 +1275,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">61k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:33</span>
+    <span title="站点阅读时长">1:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

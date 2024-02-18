@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-02-18T10:17:03.549Z</updated>
+  <updated>2024-02-18T10:51:19.527Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,18 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>聊聊通用分布式计算框架Ray</title>
+    <link href="http://example.com/2023/12/20/ml-ray-introduction/"/>
+    <id>http://example.com/2023/12/20/ml-ray-introduction/</id>
+    <published>2023-12-20T10:40:41.000Z</published>
+    <updated>2024-02-18T10:51:19.527Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;据 OpenAI 的公开资料显示，近年爆火的 ChatGPT，是基于 Ray 进行的包括预训练、Fine Tune、强化学习等 ChatGPT 的训练。那让我们来聊聊Ray 这个框架吧。&lt;/p&gt;
+&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;实际上，在2015年秋天，UC.Berkeley的 Ion Stoica教授给研究生讲系统课时，Robert和Philip 两个机器学习的学生正在做一个关于数据并行机器学习的训练，最初使用了Spark，并进行了修改叫做SparkNet，后来发现Spark 太死板，在做强化学习时，需要的计算模型非常复杂，有嵌套并行的内容发现Spark 并不擅长。于是他们研发了分布式执行引擎Ray ，主要面向未来交互式的AI，提供任务并行和高速的任务调度，并在2017年发表了论文&lt;a href=&quot;https://arxiv.org/pdf/1712.05889.pdf&quot;&gt;《Ray: A Distributed Framework for Emerging AI Applications》&lt;/a&gt;。不同于Spark 这样的BSP 计算引擎，同一stage内的任务无法相互通信，而Ray 更加底层，更加灵活，一个任务可以启动其他任务或启动actor，它们可以相互通信，还实现了全局控制状态和调度器。&lt;/p&gt;
+&lt;p&gt;基于&lt;a href=&quot;https://github.com/ray-project/ray&quot;&gt;Ray&lt;/a&gt; 这项开源工作，在2019年12月，该论文的一作、二作和Ion Stoica 教授以及Michael.Jordan 教授创立了&lt;a href=&quot;https://www.anyscale.com/&quot;&gt;Anyscale&lt;/a&gt;，提供托管Ray 的服务。值得注意的是，Ion Stoica教授也是Databricks(托管Spark)的原CEO。&lt;/p&gt;
+&lt;p&gt;如今，Ray 社区非常活跃，github上已经有29.3k ⭐️，很多大厂如国外的OpenAI、Uber、Shopify等，国内的有蚂蚁集团、字节等都在生产环境广泛使用。Ray峰会&lt;a href=&quot;https://raysummit.anyscale.com/&quot;&gt;Ray Summit&lt;/a&gt;参加的人数也越来越多，更多的公司采用Ray 作为分布式计算的框架。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Machine Learning" scheme="http://example.com/tags/Machine-Learning/"/>
+    
+  </entry>
+  
+  <entry>
     <title>DataOps 体系化</title>
     <link href="http://example.com/2022/07/21/what-dataops/"/>
     <id>http://example.com/2022/07/21/what-dataops/</id>
     <published>2022-07-21T09:56:15.000Z</published>
-    <updated>2024-02-18T10:17:03.549Z</updated>
+    <updated>2024-02-18T10:26:39.205Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;本文从企业建设大数据平台背景出发，介绍DataOps 概念目标和体系化实践建议，给企业大数据平台建设和优化提供一些借鉴。&lt;/p&gt;
 &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;近年来，数据平台在企业数字化转型过程起着越来越重要的作用，给企业的战略分析和业务推动带来强有力的数据支撑，可以快速、高质量地提供数据服务，从而实现数据价值。&lt;/p&gt;
-&lt;p&gt;然而随着企业对数据集成和分析的需求不断增长，数据源种类多，数据工具和架构复杂，对数据平台的能力要求也越来越高。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2022/07/21/what-dataops/data-architecture.jpg&quot; alt=&quot;data-architecture&quot;&gt;&lt;/p&gt;
-&lt;p&gt;落地大数据平台组件及处理方式也越来越繁杂，这对维护大数据稳定和持续接入新的数据需求带来了挑战，数据团队应持续优化数据平台架构和开发流程，以满足企业数据集成周期短，数据质量高的需求。&lt;/p&gt;</summary>
+&lt;p&gt;然而随着企业对数据集成和分析的需求不断增长，数据源种类多，数据工具和架构复杂，对数据平台的能力要求也越来越高。&lt;/p&gt;</summary>
     
     
     

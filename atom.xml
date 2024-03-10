@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-02-18T10:51:19.527Z</updated>
+  <updated>2024-03-10T14:30:40.923Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式框架Ray在Databricks上机器学习模型开发的实践</title>
+    <link href="http://example.com/2024/02/20/databricks-ray-ml/"/>
+    <id>http://example.com/2024/02/20/databricks-ray-ml/</id>
+    <published>2024-02-20T09:41:47.000Z</published>
+    <updated>2024-03-10T14:30:40.923Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在当今快速发展的人工智能领域，构建高效、可扩展的机器学习模型是至关重要的。随着云计算平台的普及和分布式计算框架的发展，企业智能应用开发者越来越多地将注意力集中在如何利用这些技术来提高机器学习模型的开发效率和性能。&lt;/p&gt;
+&lt;p&gt;现如今，云计算平台提供了很多端到端的功能和基础设施管理，以帮助企业在机器学习开发流程中实现合规性、风险控制以及成本监控等，使开发者更加关注模型研发以提升整体效率。比如AWS 的&lt;strong&gt;Sagemaker&lt;/strong&gt;，Azure的&lt;strong&gt;Machine Learning Studio&lt;/strong&gt;和GCP的&lt;strong&gt;AI Platform&lt;/strong&gt;等，而&lt;a href=&quot;https://www.databricks.com/&quot;&gt;Databircks&lt;/a&gt; 提供可以基于多云基础设施的统一Data &amp;amp; AI 工具平台。&lt;/p&gt;
+&lt;p&gt;而新兴的开源通用分布式计算框架Ray 也在不断演进，它在统一底层框架的基础上提供了丰富的&lt;a href=&quot;https://docs.ray.io/en/latest/ray-overview/index.html&quot;&gt;AI库&lt;/a&gt;。我们可以轻松的使用该上层库在任何机器或者云平台上构建机器学习开发流程。&lt;/p&gt;
+&lt;p&gt;在本文中，我将介绍分布式计算框架Ray 在Databricks平台上进行机器学习模型开发的项目实践。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="Machine Learning" scheme="http://example.com/tags/Machine-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>聊聊通用分布式计算框架Ray</title>
@@ -43,7 +65,7 @@
     <link href="http://example.com/2022/07/21/what-dataops/"/>
     <id>http://example.com/2022/07/21/what-dataops/</id>
     <published>2022-07-21T09:56:15.000Z</published>
-    <updated>2024-02-18T10:26:39.205Z</updated>
+    <updated>2024-02-25T08:52:21.804Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;本文从企业建设大数据平台背景出发，介绍DataOps 概念目标和体系化实践建议，给企业大数据平台建设和优化提供一些借鉴。&lt;/p&gt;
@@ -84,7 +106,7 @@
     <link href="http://example.com/2022/05/18/dataops-ranger-configurations/"/>
     <id>http://example.com/2022/05/18/dataops-ranger-configurations/</id>
     <published>2022-05-18T09:41:47.000Z</published>
-    <updated>2024-02-18T10:04:28.863Z</updated>
+    <updated>2024-02-18T13:15:21.062Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;近年来，越来越多的企业享受大数据平台实施带来的数据价值，也期望接入更多的企业数据及开放不同业务域的数据给不同的用户。因此，在大数据平台构建过程中，需实现完整的权限管理流程，给正确的用户以访问正确的资源权限，避免数据被窃取和被破坏。本文基于此背景，介绍大数据平台通用权限管理框架Ranger 的原理、企业级权限管理设计以及一些实践分享。希望能给大家在大数据平台权限管理落地上提供一些参考。&lt;/p&gt;

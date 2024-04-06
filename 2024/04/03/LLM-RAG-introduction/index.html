@@ -20,20 +20,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="工作14年底到15年年初的工作一言难尽，自己从嵌入式转到iOS开发，新的平台新的部门都需要重新学习和提高，压力可想而知。年初终于在我们大C司定岗，正式成为一个iOS开发，非常感谢我的三位iOS启蒙导师（李思哥哥、陆爷、彦群），他们帮助我跨过前期的障碍，也看到移动开发技术的未来。总体来讲，自己看到既年轻又活跃的天空，跟着团队也逐步认识到了一个创业团队的磨合期和碰撞期。风云变幻，莫笑少年愁。">
+  <meta name="description" content="前言近些年，AI 领域蓬勃发展，在NLP 领域，由之前的LSTM、Transformer 到后来的BERT、GPT等大规模预训练模型，NLP 技术不断突破，为下游多种应用场景带来了革新。然而,传统的语言模型存在一些固有的局限性。它们主要依赖于在大规模文本数据上进行预训练,学习到的知识和语言理解能力都蕴含在模型参数中。这导致模型难以适应新的知识和领域，泛化能力有限。此外,当需要根据外部知识进行推理和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非典型程序猿羊年总结">
-<meta property="og:url" content="http://example.com/2016/02/05/annual-summary-of-programmer-2015/index.html">
+<meta property="og:title" content="RAG 观察">
+<meta property="og:url" content="http://example.com/2024/04/03/LLM-RAG-introduction/index.html">
 <meta property="og:site_name" content="华少的博客">
-<meta property="og:description" content="工作14年底到15年年初的工作一言难尽，自己从嵌入式转到iOS开发，新的平台新的部门都需要重新学习和提高，压力可想而知。年初终于在我们大C司定岗，正式成为一个iOS开发，非常感谢我的三位iOS启蒙导师（李思哥哥、陆爷、彦群），他们帮助我跨过前期的障碍，也看到移动开发技术的未来。总体来讲，自己看到既年轻又活跃的天空，跟着团队也逐步认识到了一个创业团队的磨合期和碰撞期。风云变幻，莫笑少年愁。">
+<meta property="og:description" content="前言近些年，AI 领域蓬勃发展，在NLP 领域，由之前的LSTM、Transformer 到后来的BERT、GPT等大规模预训练模型，NLP 技术不断突破，为下游多种应用场景带来了革新。然而,传统的语言模型存在一些固有的局限性。它们主要依赖于在大规模文本数据上进行预训练,学习到的知识和语言理解能力都蕴含在模型参数中。这导致模型难以适应新的知识和领域，泛化能力有限。此外,当需要根据外部知识进行推理和">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-02-05T14:57:46.000Z">
-<meta property="article:modified_time" content="2024-01-28T02:57:13.042Z">
+<meta property="og:image" content="http://example.com/2024/04/03/LLM-RAG-introduction/LLM-RAG.jpg">
+<meta property="og:image" content="http://example.com/2024/04/03/LLM-RAG-introduction/rag-ollama.jpeg">
+<meta property="article:published_time" content="2024-04-03T02:25:59.000Z">
+<meta property="article:modified_time" content="2024-04-06T14:50:05.487Z">
 <meta property="article:author" content="洛上倾城华少">
-<meta property="article:tag" content="总结">
+<meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/04/03/LLM-RAG-introduction/LLM-RAG.jpg">
 
-<link rel="canonical" href="http://example.com/2016/02/05/annual-summary-of-programmer-2015/">
+<link rel="canonical" href="http://example.com/2024/04/03/LLM-RAG-introduction/">
 
 
 <script id="page-configurations">
@@ -46,7 +49,7 @@
   };
 </script>
 
-  <title>非典型程序猿羊年总结 | 华少的博客</title>
+  <title>RAG 观察 | 华少的博客</title>
   
 
 
@@ -158,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2016/02/05/annual-summary-of-programmer-2015/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/03/LLM-RAG-introduction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -171,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          非典型程序猿羊年总结
+          RAG 观察
         </h1>
 
         <div class="post-meta">
@@ -181,14 +184,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-02-05 22:57:46" itemprop="dateCreated datePublished" datetime="2016-02-05T22:57:46+08:00">2016-02-05</time>
+              <time title="创建时间：2024-04-03 10:25:59" itemprop="dateCreated datePublished" datetime="2024-04-03T10:25:59+08:00">2024-04-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-28 10:57:13" itemprop="dateModified" datetime="2024-01-28T10:57:13+08:00">2024-01-28</time>
+                <time title="修改时间：2024-04-06 22:50:05" itemprop="dateModified" datetime="2024-04-06T22:50:05+08:00">2024-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -196,7 +199,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -213,14 +216,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -232,20 +235,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p>14年底到15年年初的工作一言难尽，自己从嵌入式转到iOS开发，新的平台新的部门都需要重新学习和提高，压力可想而知。年初终于在我们大C司定岗，正式成为一个iOS开发，非常感谢我的三位iOS启蒙导师（李思哥哥、陆爷、彦群），他们帮助我跨过前期的障碍，也看到移动开发技术的未来。总体来讲，自己看到既年轻又活跃的天空，跟着团队也逐步认识到了一个创业团队的磨合期和碰撞期。<strong>风云变幻，莫笑少年愁</strong>。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近些年，AI 领域蓬勃发展，在NLP 领域，由之前的LSTM、Transformer 到后来的BERT、GPT等大规模预训练模型，NLP 技术不断突破，为下游多种应用场景带来了革新。然而,传统的语言模型存在一些固有的局限性。它们主要依赖于在大规模文本数据上进行预训练,学习到的知识和语言理解能力都蕴含在模型参数中。这导致模型难以适应新的<strong>知识和领域，泛化能力有限</strong>。此外,当需要根据外部知识进行推理和问答时，传统的语言模型往往捉襟见肘。</p>
+<p>为了克服这些局限性，研究者们提出了一种新的范式——RAG(Retrieval-Augmented Generation)，即检索增强生成。RAG模型通过融合知识检索和语言生成两个阶段，实现了更加强大和灵活的自然语言处理能力。与传统的语言模型不同，<strong>RAG可以根据输入的问题或上下文，实时检索相关的外部知识，并利用这些知识来指导答案的生成。</strong>这使得RAG模型能够利用海量的结构化和非结构化知识，动态适应不同的任务需求。</p>
 <span id="more"></span>
 
-<p>毕竟是属于在集团内部创业的团队，业绩表现是团队影响最直观的因素，做出的产品销量达不到，则必须精简人员投入。于是乎，我也在3月底转入了新的部门，新的创业团队。<br>新的团队，自己又要重新熟悉团队产品及开发，当然这也给了我更多的机会。在逐步熟悉产品和技术的过程中，自己也跟着double dragon慢慢将iOS开发流程建立起来了（各种试错过程也是尴尬）。在这期间自己的技术成长还是蛮大的，团队初期的敏捷开发流程也很熟悉了。能够在团队里发挥这些作用，也使得自己收获到了成就感。</p>
-<p>当然，除了技术方面，自己在团队协作方面也能提出一些见解，而团队的产品也是从无到有，经历了各种发布和改版。无数的讨论脑暴，和设计狮产品汪“对喷”，同样直面用户的“指手画脚”，都是自己一生的收获。感谢大家的努力，希望新的一年，咱们的产品能更加稳定、易用，抓住细节，优化体验。</p>
-<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><p>说到技术，太多细节，想想还是简而言之比较好。这一年自己的成长主要是对cocoa框架更加熟悉，对于HTTP网络层的封装有了较为深入的思考，蓝牙模块也比较熟悉，学习了swift开发等等。看了无数片博客，发现目前国内的iOS开发技术的开发性也很强，在这里要赞一下开源社区。与时俱进，自己经常关注微博，订阅（RSS）界内很多博客，还有些国外的论坛博客，都是非常好多资源。通过奇妙清单列出自己近期的学习计划，每周抽空回顾，找一个点好好研究下。这种方式帮助我了解很多iOS开发新奇时尚以及优化的做法。推荐大家使用。</p>
-<h3 id="运动"><a href="#运动" class="headerlink" title="运动"></a>运动</h3><p>在年初时，大C司组建了自己的球队，作为篮球极度爱好者，果断参加。上半年还跑遍广州各种打比赛，气氛异常high。自己每周六下午都会跟大家打一次篮球，酣畅淋漓！而大广州在五六月份连续不断的下雨也是醉了，连着两个月打不了球，等到天气好点放晴了才突然发现，每周六打球的气氛也没有了。自己也转移到健身，从四月多开始，去健身房虐胸，在寝室里虐腹（Keep）。一度还带着团队的几个小伙伴一起健身，可是发现各种无法坚持下去。。年底公司的健身房重新开张后，自己去健身的频率更高了。有时一周五次，每次都是精疲力尽。我想，健身必定是一剂毒药，让人疯狂的爱上它。16年，希望自己继续坚持下去~</p>
-<h3 id="旅游"><a href="#旅游" class="headerlink" title="旅游"></a>旅游</h3><blockquote>
-<p>“要么旅行，要么读书，身体和灵魂必须有一个在路上。”</p>
-</blockquote>
-<p>可是，旅行和读书怎么想都是孤独的，是一个人的事情。有时候，累了、烦了，背起行囊就去逃离、去发现。</p>
-<p>于是乎，在十二月初利用整年都没有使用的年假去了趟云南。都说“下关风，上关花，苍山雪，洱海月”是大理四绝！那时还特意把仙剑奇侠传电视剧看了一遍，“灵儿，我要送你回南诏国”，多么令人神往的地方呀~</p>
-<p>昆明——丽江——大理，满满的行程也非常舒心！自由行的好处就在于每天不用那么赶，不会收导游脸色。自己想去哪就去哪，想待多久就多久。在丽江时，由于是淡季住在古城当地人开的客栈里，却被忽悠带到拉市海骑马，差点被坑了。丽江古城晚上非常热闹，很多酒吧夜市，但要注意好多酒托。现在古城商业化比较严重，也没看到什么想买的东西，于是直接去大理了。在大理古城外租一辆轿车，先开车围着洱海转了大半圈，到双廊住下后才发觉如此舒服。白天享受着冬日的暖阳，面对着洱海，心里非常放松。在暖暖客栈看看旅行人儿的留言，骑着小电驴围着洱海慢悠悠的绕着，享受着逃离现实般的梦幻。这一切回味起来真是让人迷恋。还记得当时就说了句，我一定还会再来！一路上也遇到了很多小伙伴，来自各地的朋友齐聚这里，还有一些直接在客栈打短工，都非常的有趣，都被洱海的风光所吸引。</p>
-<p><strong>一年的总结就到这里，2016年，也不定什么目标了，只要对自己好一点，对自己狠一点。</strong></p>
+<h3 id="LLM-让RAG-爆发"><a href="#LLM-让RAG-爆发" class="headerlink" title="LLM 让RAG 爆发"></a>LLM 让RAG 爆发</h3><p>如今，LLM 的出现让RAG 的应用爆发，主要原因是LLM 在处理领域特定或高度专业化查询方面有明显的局限性。<br>局限1：生成错误信息，就是所谓的“幻觉”。这类问题在查询的内容超出模型训练数据的范围或需要最新信息的场景中，尤其突出。这里就涉及到LLM 对齐，需要微调或强化学习。<br>局限2：时效性差。而RAG 正是通过检索外部数据并将其整合到生成过程中，从而增强了模型回复的准确性和相关性。</p>
+<h3 id="RAG-实现原理和工程实现"><a href="#RAG-实现原理和工程实现" class="headerlink" title="RAG 实现原理和工程实现"></a>RAG 实现原理和工程实现</h3><p><strong>RAG的主要优势在于，在开发针对特定任务的应用时，开发者可以直接附加一个外部知识库来丰富输入，从而提高模型输出的精确度，无需对LLM进行针对性的二次训练。</strong></p>
+<p>如图所示RAG 的整体实现过程：<br><img src="/2024/04/03/LLM-RAG-introduction/LLM-RAG.jpg" alt="llm-rag"></p>
+<p>实现RAG 的工作流主要有三个关键步骤：</p>
+<ol>
+<li>语料库被划分为离散的块，使用编码器模型构建向量索引</li>
+<li>RAG 根据Query 与 索引块（Indexed Chunk）的向量相似度识别并对块进行检索</li>
+<li>LLM 根据检索块（Retrieved Chunk）中获取的上下文信息生成回复</li>
+</ol>
+<p>一个简单的本地RAG 实现如下图所示：<br><img src="/2024/04/03/LLM-RAG-introduction/rag-ollama.jpeg" alt="rag-ollama"></p>
+<p>以上流程看似简单，但每一步都有很多创新方法，比如检索什么，何时检索，如何使用检索到的信息等。<br>再加上工程实现上，每一步的性能和评估都需要详细实践。因此我们需要深入分析每一步。<br>带着问题来深入思考下RAG，如：</p>
+<ol>
+<li>怎么划分离散块，策略是什么</li>
+<li>使用什么样的编码模型</li>
+<li>向量维度怎么确定，向量存储库的使用</li>
+<li>检索算法如何选择 </li>
+<li>LLM 上下文长度与检索块大小如何平衡</li>
+<li>如何建立RAG 评估体系</li>
+<li>多模态RAG</li>
+</ol>
+<p>未完待续…</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3WAWy4ZV6Ezft_2MJHMgtg">读论文：大模型的RAG 调查</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fF4m177EB/?spm_id_from=333.337.search-card.all.click&vd_source=d3ae0d74e41316b4137ebb76315ca37a">基于GPU 的检索增强生成（Nvidia）</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/MIwy_PwyqTlP4A7vkAw1Ew?from=10E3093010&launchid=default&WBAPIAnalysisOriUICodes=10000001&v_p=90&aid=01AiE15GOglcEnEIwrCULXQD4auYbRvK2UHvT2oUx_xe6MpSI.&wm=3333_2001&theme=dark&s_trans=3218101390_&s_channel=4">一文读懂RAG的来源、发展和前沿</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=jENqvjpkwmw">Ollama Embedding: How to Feed Data to AI for Better Response?</a></p>
 
     </div>
 
@@ -261,7 +279,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2016/02/05/annual-summary-of-programmer-2015/" title="非典型程序猿羊年总结">http://example.com/2016/02/05/annual-summary-of-programmer-2015/</a>
+    <a href="http://example.com/2024/04/03/LLM-RAG-introduction/" title="RAG 观察">http://example.com/2024/04/03/LLM-RAG-introduction/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -272,7 +290,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+              <a href="/tags/LLM/" rel="tag"># LLM</a>
           </div>
 
         
@@ -281,13 +299,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2016/01/25/iOS-GCD-deadlock/" rel="prev" title="iOS GCD 死锁大作战">
-      <i class="fa fa-chevron-left"></i> iOS GCD 死锁大作战
+    <a href="/2024/02/20/databricks-ray-ml/" rel="prev" title="分布式框架Ray在Databricks上机器学习模型开发的实践">
+      <i class="fa fa-chevron-left"></i> 分布式框架Ray在Databricks上机器学习模型开发的实践
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2016/03/20/iOS-network-design/" rel="next" title="iOS 网络层架构设计与实现">
-      iOS 网络层架构设计与实现 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -347,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF"><span class="nav-number">1.1.</span> <span class="nav-text">技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8"><span class="nav-number">1.2.</span> <span class="nav-text">运动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E6%B8%B8"><span class="nav-number">1.3.</span> <span class="nav-text">旅游</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LLM-%E8%AE%A9RAG-%E7%88%86%E5%8F%91"><span class="nav-number">2.</span> <span class="nav-text">LLM 让RAG 爆发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RAG-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%92%8C%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">RAG 实现原理和工程实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -525,7 +540,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'devhua.github.io',
       owner       : 'Devhua',
       admin       : ['Devhua'],
-      id          : '810fced288132c677bcc68f87c863fb4',
+      id          : 'b932d634d6a0c1a99bf0aa988f702a28',
         language: '',
       distractionFreeMode: true
     });

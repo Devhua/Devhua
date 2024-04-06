@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-10T14:30:40.923Z</updated>
+  <updated>2024-04-06T14:50:05.487Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>RAG 观察</title>
+    <link href="http://example.com/2024/04/03/LLM-RAG-introduction/"/>
+    <id>http://example.com/2024/04/03/LLM-RAG-introduction/</id>
+    <published>2024-04-03T02:25:59.000Z</published>
+    <updated>2024-04-06T14:50:05.487Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;近些年，AI 领域蓬勃发展，在NLP 领域，由之前的LSTM、Transformer 到后来的BERT、GPT等大规模预训练模型，NLP 技术不断突破，为下游多种应用场景带来了革新。然而,传统的语言模型存在一些固有的局限性。它们主要依赖于在大规模文本数据上进行预训练,学习到的知识和语言理解能力都蕴含在模型参数中。这导致模型难以适应新的&lt;strong&gt;知识和领域，泛化能力有限&lt;/strong&gt;。此外,当需要根据外部知识进行推理和问答时，传统的语言模型往往捉襟见肘。&lt;/p&gt;
+&lt;p&gt;为了克服这些局限性，研究者们提出了一种新的范式——RAG(Retrieval-Augmented Generation)，即检索增强生成。RAG模型通过融合知识检索和语言生成两个阶段，实现了更加强大和灵活的自然语言处理能力。与传统的语言模型不同，&lt;strong&gt;RAG可以根据输入的问题或上下文，实时检索相关的外部知识，并利用这些知识来指导答案的生成。&lt;/strong&gt;这使得RAG模型能够利用海量的结构化和非结构化知识，动态适应不同的任务需求。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://example.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="LLM" scheme="http://example.com/tags/LLM/"/>
+    
+  </entry>
+  
+  <entry>
     <title>分布式框架Ray在Databricks上机器学习模型开发的实践</title>
     <link href="http://example.com/2024/02/20/databricks-ray-ml/"/>
     <id>http://example.com/2024/02/20/databricks-ray-ml/</id>
     <published>2024-02-20T09:41:47.000Z</published>
-    <updated>2024-03-10T14:30:40.923Z</updated>
+    <updated>2024-04-03T01:48:01.907Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;在当今快速发展的人工智能领域，构建高效、可扩展的机器学习模型是至关重要的。随着云计算平台的普及和分布式计算框架的发展，企业智能应用开发者越来越多地将注意力集中在如何利用这些技术来提高机器学习模型的开发效率和性能。&lt;/p&gt;

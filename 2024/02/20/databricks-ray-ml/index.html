@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/2024/02/20/databricks-ray-ml/ray-train-tuner.png">
 <meta property="og:image" content="http://example.com/2024/02/20/databricks-ray-ml/databricks-cluster-gpus.jpg">
 <meta property="article:published_time" content="2024-02-20T09:41:47.000Z">
-<meta property="article:modified_time" content="2024-03-10T14:30:40.923Z">
+<meta property="article:modified_time" content="2024-04-03T01:48:01.907Z">
 <meta property="article:author" content="洛上倾城华少">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -168,7 +168,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
       <meta itemprop="name" content="洛上倾城华少">
-      <meta itemprop="description" content="Data & AI,DataOps & MLOps, Cloud, 大前端">
+      <meta itemprop="description" content="Data & AI & 全栈开发">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -193,7 +193,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-10 22:30:40" itemprop="dateModified" datetime="2024-03-10T22:30:40+08:00">2024-03-10</time>
+                <time title="修改时间：2024-04-03 09:48:01" itemprop="dateModified" datetime="2024-04-03T09:48:01+08:00">2024-04-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,13 +245,13 @@
 
 <h3 id="Machine-Learning-in-Databricks"><a href="#Machine-Learning-in-Databricks" class="headerlink" title="Machine Learning in Databricks"></a>Machine Learning in Databricks</h3><p>Databricks 为机器学习模型开发提供了一系列的工具与功能：</p>
 <ol>
-<li>Databricks Runtime：是一个经过优化的运行时环境，支持常用的机器学习框架和库，如TensorFlow、PyTorch和Scikit-learn等，我们在项目上就是使用13.3 LTS ML (includes Apache Spark 3.4.1, Scala 2.12)版本，其中还包含模型可解释库SHAP等第三方分析库；同时提供高效的分布式计算和存储，可以基于此为模型训练提供稳定和高性能的环境。</li>
+<li>Databricks Runtime：是一个经过优化的运行时环境，支持常用的机器学习框架和库，如TensorFlow、PyTorch和Scikit-learn等，在项目上就是使用13.3 LTS ML (includes Apache Spark 3.4.1, Scala 2.12)版本，其中还包含模型可解释库SHAP等第三方分析库；同时提供高效的分布式计算和存储，可以基于此为模型训练提供稳定和高性能的环境。</li>
 <li>MLFlow：是一个开源的Machine Learning Lifecycle Platform, 也是由Databricks 发起和主导开发的。能帮助开发者进行model tracking和registry。</li>
 <li>Databricks Delta：是databricks 提供的高性能数据湖解决方案，结合了数据仓库的可靠性和数据湖的灵活性，且提供了事务性ACID 操作，自动数据版本控制、增量数据湖更新等功能，使得数据管理和处理更加简单可靠，对比DVC(<a target="_blank" rel="noopener" href="https://dvc.org/">https://dvc.org/</a>) 在管理非结构化数据集时有明显优势。</li>
 <li>Databricks Workflow: 允许用户在Databricks 上自动执行任务流的调度器，可以自定义脚本执行数据处理、模型训练、评估和部署等任务。类似Airflow 等调度器，它也可以配置作业的调度时间，触发条件和执行环境等，是实现CD4ML(<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/cd4ml.html">https://martinfowler.com/articles/cd4ml.html</a>) 流程的关键</li>
 <li>Databricks AutoML：是Databricks提供的自动化机器学习功能，可以自动化的进行特征工程、模型选择和调优，以帮助用户快速构建和优化机器学习模型</li>
 </ol>
-<p>我们在Databricks 平台上构建了机器学习模型开发的pipeline，基于CD4ML 的理念，设计并实现了数据集版本管理、模型训练、数据与模型检测、模型管理等workflows。<br>简版架构图如下:<br><img src="/2024/02/20/databricks-ray-ml/databricks-ml-platform.jpeg" alt="databricks-ml-platform"></p>
+<p>我在Databricks 平台上构建了机器学习模型开发的pipeline，基于CD4ML 的理念，设计并实现了数据集版本管理、模型训练、数据与模型检测、模型管理等workflows。<br>简版架构图如下:<br><img src="/2024/02/20/databricks-ray-ml/databricks-ml-platform.jpeg" alt="databricks-ml-platform"></p>
 <p><strong>基础设施方面</strong><br>基于infrastructure as code 原则，使用Terraform 管理多个环境（sit、uat和prod）的资源，包括databricks workspace、network、access control、stroage、cluster等。</p>
 <p><strong>数据集管理方面</strong><br>使用Databricks delta table管理图像数据集，对于数据集的调整，通过delta table的版本标记来跟踪。</p>
 <p>同时使用<a target="_blank" rel="noopener" href="https://github.com/visual-layer/fastdup">Fastdup</a>进行数据集清洗，使用<a target="_blank" rel="noopener" href="https://docs.seldon.io/projects/alibi-detect/en/latest/">Alibi Detect</a> 对比线上数据和训练数据集的差异，设计实现data drift 检测流程。</p>
@@ -267,7 +267,7 @@
 <p>实际上，进行大部分机器学习模型开发时，直接使用Databricks 平台提供的能力也是可行的，但由于项目上的数据集是图像这种非结构化数据。<br>而现有<strong>Databricks 不支持图片数据集的AutoML Experiment</strong>。</p>
 <p><img src="/2024/02/20/databricks-ray-ml/databricks-data-feature.jpg" alt="databricks data feature"></p>
 <p>众所周知，模型训练也是一个炼丹的过程。在模型训练流程中，我们通过不断的调整模型结构和超参数，以训练出一个最佳性能的模型。这个过程中使用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Automated_machine_learning">AutoML</a> 方法提供模型开发效率，节省训练资源。</p>
-<p><strong>对于Ray 提供的AI库，我们主要使用了Ray Train 和Ray Tune, 主要用于模型训练和参数微调。结合Databricks 平台我们实现了分布式数据并行训练，自动超参调优，以及自定义提前停止策略等功能。</strong></p>
+<p><strong>对于Ray 提供的AI库，我主要使用了Ray Train 和Ray Tune, 主要用于模型训练和参数微调。结合Databricks 平台，实现了分布式数据并行训练，自动超参调优，以及自定义提前停止策略等功能。</strong></p>
 <p><img src="/2024/02/20/databricks-ray-ml/ray-train-tuner.png" alt="ray trainer"></p>
 <p>对于分布式数据并行训练，Pytorch 提供了DDP(Distributed Data Parallel) 的实现，而Ray Trainer也对DDP 进行了兼容和封装，只需要简单几步就可以实现分布式数据并行，具体的代码可以参考这篇文章<a target="_blank" rel="noopener" href="https://docs.ray.io/en/latest/train/getting-started-pytorch.html">Ray: Get Started with Distributed Training using PyTorch</a></p>
 <p>下图是在Databricks 上使用多GPU 进行模型训练时的机器监控图:<br><img src="/2024/02/20/databricks-ray-ml/databricks-cluster-gpus.jpg" alt="databricks-cluster-gpus"></p>
@@ -278,11 +278,11 @@
 <ol>
 <li>对超参集合，可以自定义搜索空间，提供Grid，Choice等方式</li>
 <li>多种开箱即用的搜索算法，如PBT，ASHA等</li>
-<li>利用各种尖端优化算法，结合scheduler 定义提前停止策略，甚至在训练过程中调整超参以优化训练，节约成本</li>
+<li>利用各种尖端优化算法，结合scheduler 自定义提前停止策略，甚至在训练过程中调整超参以优化训练，节约成本</li>
 <li>可以自定义训练任务的资源，进行多GPU的分布式并行训练（同时进行多个训练评估任务）</li>
 </ol>
-<p>与此同时，我们还使用Ray 集成了MLFlow trace，通过Azure DCE(Data Collection Endpoint) 和 DCR(Data Collection Rule)将训练过程和结果的日志记录到Azure Monitor中，将训练模型及运行日志保存到Azure Storage Account，实现模型训练过程的全链路监控与记录保存，以便问题排查和分析追溯。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文阐述了Databricks Platform 为机器学习模型开发提供的各种功能，通过项目实践方案介绍以及Ray 提供的AI库使用实践，让大家了解进行机器学习模型开发落地的过程，探讨一些最佳实践。由于篇幅原因，整个实现过程还有很多细节和落地注意事项未说明，有想进一步了解和沟通的同学，欢迎来一起探讨和总结。</p>
+<p>与此同时，我还使用Ray 集成了MLFlow trace，通过Azure DCE(Data Collection Endpoint) 和 DCR(Data Collection Rule)将训练过程和结果的日志记录到Azure Monitor中，将训练模型及运行日志保存到Azure Storage Account，实现模型训练过程的全链路监控与记录保存，以便问题排查和分析追溯。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文阐述了Databricks Platform 为机器学习模型开发提供的各种功能，通过项目实践方案介绍以及Ray 提供的AI库使用实践，让大家了解进行机器学习模型开发落地的过程，探讨一些最佳实践。由于篇幅原因，整个实现过程还有很多细节和落地注意事项未说明，有想进一步了解和沟通的同学，欢迎来找我一起探讨和总结。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-sg/azure/databricks/machine-learning/automl/how-automl-works">how automl works</a></p>
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-sg/azure/databricks/machine-learning/ray-integration">Use Ray on Azure Databricks</a></p>
 <p><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/intermediate/ddp_tutorial.html">Pytorch DDP</a></p>
@@ -327,7 +327,10 @@
     <a href="/2023/12/20/ml-ray-introduction/" rel="prev" title="聊聊通用分布式计算框架Ray">
       <i class="fa fa-chevron-left"></i> 聊聊通用分布式计算框架Ray
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/04/03/LLM-RAG-introduction/" rel="next" title="RAG 观察">
+      RAG 观察 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -396,14 +399,14 @@
     <img class="site-author-image" itemprop="image" alt="洛上倾城华少"
       src="/images/avatar.png">
   <p class="site-author-name" itemprop="name">洛上倾城华少</p>
-  <div class="site-description" itemprop="description">Data & AI,DataOps & MLOps, Cloud, 大前端</div>
+  <div class="site-description" itemprop="description">Data & AI & 全栈开发</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -412,7 +415,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -473,12 +476,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">64k</span>
+    <span title="站点总字数">65k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:46</span>
+    <span title="站点阅读时长">1:48</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
